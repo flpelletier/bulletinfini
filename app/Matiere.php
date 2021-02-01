@@ -14,4 +14,8 @@ class Matiere extends Model
     {
         return $this->belongsTo(GroupeMatiere::class);
     }
+    public function promotion()
+    {
+        return $this->belongsTo(Promotion::class);
+    }
 }

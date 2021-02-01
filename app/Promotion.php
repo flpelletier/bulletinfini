@@ -18,4 +18,8 @@ class Promotion extends Model
     {
         return $this->hasMany(Periode::class);
     }
+    public function matiere()
+    {
+        return $this->hasMany(Matiere::class);
+    }
 }
