@@ -16,6 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('note');
+            $table->string('description')->nullable();
             $table->float('coefficient');
             $table->bigInteger('matiere_id')->unsigned();
             $table->bigInteger('eleve_id')->unsigned();
