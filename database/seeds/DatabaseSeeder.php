@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PromotionsSeeder::class);
         $this->call(ElevesSeeder::class);
         $this->call(GroupeMatieresSeeder::class);
+        $this->call(ProfSeeder::class);
         $this->call(MatieresSeeder::class);
         $this->call(BulletinsSeeder::class);
         $this->call(PeriodesSeeder::class);

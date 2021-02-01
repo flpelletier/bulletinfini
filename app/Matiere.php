@@ -18,4 +18,8 @@ class Matiere extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+    public function prof()
+    {
+        return $this->belongsTo(Prof::class);
+    }
 }

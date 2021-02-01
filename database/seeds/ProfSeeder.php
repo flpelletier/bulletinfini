@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ElevesSeeder extends Seeder
+class ProfSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,10 +11,10 @@ class ElevesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('eleves')->insert([
-            'nom' => 'emma',
-            'prenom' => 'bodins',
-            'promotion_id' => '1',
+        DB::table('profs')->insert([
+            'nom' => 'julian',
+            'prenom' => 'courbez',
+            'genre' => "homme",
             'created_at' => now()
         ]);
     }

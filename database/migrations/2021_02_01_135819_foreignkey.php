@@ -28,6 +28,9 @@ class Foreignkey extends Migration
         Schema::table('matieres', function (Blueprint $table) {
             $table->foreign('groupe-matiere_id')->references('id')->on('groupe_matieres')->onDelete('cascade');
         });
+        Schema::table('matieres', function (Blueprint $table) {
+            $table->foreign('prof_id')->references('id')->on('profs')->onDelete('cascade');
+        });
         Schema::table('bulletins', function (Blueprint $table) {
             $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
         });

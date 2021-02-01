@@ -16,6 +16,7 @@ class MatieresSeeder extends Seeder
             'coefficient' => "12",
             'groupe-matiere_id' => "1",
             'promotion_id'=> "1",
+            'prof_id'=>"1",
             'created_at' => now()
         ]);
     }

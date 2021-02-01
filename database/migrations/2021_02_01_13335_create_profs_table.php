@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatieresTable extends Migration
+class CreateProfsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMatieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('matieres', function (Blueprint $table) {
+        Schema::create('profs', function (Blueprint $table) {
             $table->id();
-            $table->string("intitule");
-            $table->float("coefficient");
-            $table->bigInteger("groupe-matiere_id")->unsigned();
-            $table->bigInteger("promotion_id")->unsigned();
-            $table->bigInteger("prof_id")->unsigned();
+            $table->string("nom");
+            $table->string("prenom");
+            $table->enum("genre" , ['homme','femme','fer à repasser']);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateMatieresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matieres');
+        Schema::dropIfExists('profs');
     }
 }

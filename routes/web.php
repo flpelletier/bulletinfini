@@ -23,6 +23,7 @@ Route::resource('/notes', 'NotesController');
 Route::resource('/matieres', 'MatieresController');
 Route::resource('/promotions', 'PromotionsController');
 Route::resource('/periodes', 'PeriodeController');
-
+Route::get("/management","GestionPromotionController@index")->name("promo.index");
+Route::post("/management/management","GestionPromotionController@promo")->name("promo.manage");
 Route::get('/home', 'HomeController@index')->name('home');
 Route::name('admin')->get('/', 'AdminController@index');
