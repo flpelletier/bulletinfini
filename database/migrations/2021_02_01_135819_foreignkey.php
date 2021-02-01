@@ -19,6 +19,9 @@ class Foreignkey extends Migration
         Schema::table('notes', function (Blueprint $table) {
             $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
         });
+        Schema::table('notes', function (Blueprint $table) {
+            $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('cascade');
+        });
         Schema::table('matieres', function (Blueprint $table) {
             $table->foreign('groupe-matiere_id')->references('id')->on('groupe_matieres')->onDelete('cascade');
         });
@@ -26,6 +29,9 @@ class Foreignkey extends Migration
             $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
         });
         Schema::table('eleves', function (Blueprint $table) {
+            $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
+        });
+        Schema::table('periodes', function (Blueprint $table) {
             $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
         });
 
