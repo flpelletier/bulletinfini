@@ -21,7 +21,6 @@
                             <div class="col-sm-7">
                                 <div class="form-group">
                                     <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;">{{ $promotion->intitule }}</div>
-
                                 </div>
                             </div>
                         </div>
@@ -31,7 +30,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Année') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;">{{ $promotion->année }}</div>
+                                    <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;">{{ $promotion->annee }}</div>
 
                                 </div>
                             </div>

@@ -31,7 +31,7 @@ class PromotionsController extends Controller
         $promotion = new Promotion;
 
         $promotion->intitule = $request->get('intitule');
-        $promotion->année = $request->get('annee');
+        $promotion->annee = $request->get('annee');
         $promotion->updated_at = now();
         $promotion->save();
 
@@ -42,7 +42,7 @@ class PromotionsController extends Controller
         $promotion = Promotion::find($id);
 
         $promotion->intitule = $request->get('intitule');
-        $promotion->année = $request->get('annee');
+        $promotion->annee = $request->get('annee');
         $promotion->updated_at = now();
         $promotion->save();
 
