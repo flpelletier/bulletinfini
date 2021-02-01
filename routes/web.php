@@ -22,6 +22,7 @@ Route::resource('/eleves', 'ElevesController');
 Route::resource('/notes', 'NotesController');
 Route::resource('/matieres', 'MatieresController');
 Route::resource('/promotions', 'PromotionsController');
+Route::resource('/periodes', 'PeriodeController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::name('admin')->get('/', 'AdminController@index');
