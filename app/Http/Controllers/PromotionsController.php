@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Promotion;
 use Illuminate\Http\Request;
 
 class PromotionsController extends Controller
 {
     public function index()
     {
-        return view('back.promotions.index');
-    }}
+        $promotion = Promotion::all();
+        return view('promotions.index', compact('promotion'));
+    }
+}
