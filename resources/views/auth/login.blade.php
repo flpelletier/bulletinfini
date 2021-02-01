@@ -44,10 +44,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="" style="background: linear-gradient(#38422b 0%, #000 80%);">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Suis nous Twitter" data-placement="bottom" href="" target="_blank">
-              <i></i>
-              <p class="d-lg-none d-xl-none"></p>
-            </a>
+           
           </li>
 
         </ul>
@@ -57,9 +54,8 @@
   <!-- End Navbar -->
 
   <div class="page-header clear-filter" filter-color="yellow">
-    <div class="page-header-image" style="background-image:url(./images/task-list.png)"></div>
+    <div class="page-header-image" style="background-image:url(./images/learning-concept.png)"></div>
     <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
-    <div class="content">
       <div class="container">
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
@@ -120,40 +116,10 @@
                   </a></h6>
                 @endif
               </div>
-              <div class="pull-left">
-                <h6> <a class="link">
-                    <!-- href="{{ route('password.request') }}" -->
-                    {{ __('Créer un compte') }}
-                  </a></h6>
-              </div>
             </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
-    <footer class="footer">
-      <div class=" container ">
-        <nav>
-          <ul>
-            <li>
-             
-            </li>
-            <li>
-              <a href="">
-                CONTACT
-              </a>
-            </li>
-
-          </ul>
-        </nav>
-        <div class="copyright" id="copyright">
-          &copy;
-          <script>
-            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-          </script>
-        </div>
-      </div>
-    </footer>
   </div>
 </body>

@@ -18,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Auth::routes();
-Route::resource('/eleves', 'ElevesController');
-Route::resource('/notes', 'NotesController');
-Route::resource('/matieres', 'MatieresController');
-Route::resource('/promotions', 'PromotionsController');
-Route::resource('/periodes', 'PeriodeController');
-Route::get("/management","GestionPromotionController@index")->name("promo.index");
-Route::post("/management/management","GestionPromotionController@promo")->name("promo.manage");
-Route::get('/home', 'HomeController@index')->name('home');
-Route::name('admin')->get('/', 'AdminController@index');
+Auth::routes(['verify' => true]);
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('/eleves', 'ElevesController');
+    Route::resource('/users', 'UsersController');
+    Route::resource('/notes', 'NotesController');
+    Route::resource('/matieres', 'MatieresController');
+    Route::resource('/promotions', 'PromotionsController');
+    Route::resource('/periodes', 'PeriodeController');
+    Route::get("/management", "GestionPromotionController@index")->name("promo.index");
+    Route::post("/management/management", "GestionPromotionController@promo")->name("promo.manage");
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::name('admin')->get('/', 'AdminController@index');
+});
