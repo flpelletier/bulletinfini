@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Auth::routes();
+Route::resource('/back/eleves', 'ElevesController');
+Route::resource('/back/notes', 'NotesController');
+Route::resource('/back/matieres', 'MatieresController');
+Route::resource('/back/promotions', 'PromotionsController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::name('admin')->get('/', 'AdminController@index');
