@@ -52,7 +52,7 @@
                                 <label class="col-sm-2 col-form-label">Année :</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('annee') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('annee') ? ' is-invalid' : '' }}" name="annee" id="input-annee" type="text" placeholder="Année" value="{{$promotion->année}}" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('annee') ? ' is-invalid' : '' }}" name="annee" id="input-annee" type="text" placeholder="Année" value="{{$promotion->annee}}" required="true" aria-required="true" />
                                         @if ($errors->has('annee'))
                                         <span id="description-error" class="error text-danger" for="input-annee">{{ $errors->first('annee') }}</span>
                                         @endif

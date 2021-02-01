@@ -80,7 +80,7 @@
                                         </td>
                                         <td>
                                             <center>
-                                                {{ $promotion->année }}
+                                                {{ $promotion->annee }}
                                             </center>
                                         </td>
                                         <td>
