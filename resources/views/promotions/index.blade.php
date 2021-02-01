@@ -66,7 +66,7 @@
                                     </tr>
                                 <tbody>
 
-                                    @foreach ($promotion as $promotions)
+                                    @foreach ($promotions as $promotion)
                                     <tr>
                                         <td>
                                             <center>
@@ -74,25 +74,27 @@
                                             </center>
                                         </td>
                                         <td>
-                                            <label class="badge badge-danger">
+                                            <center>
                                                 {{ $promotion->intitule }}
-                                            </label>
+                                            </center>
                                         </td>
                                         <td>
-                                            {{ $promotion->année }}
+                                            <center>
+                                                {{ $promotion->année }}
+                                            </center>
                                         </td>
                                         <td>
                                             <center>
                                                 <div style="display: inline-flex;">
-                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('promotion.show', $promotion->id)}}" data-original-title="" title="">
+                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('promotions.show', $promotion->id)}}" data-original-title="" title="">
                                                         <i class="fas fa-eye"></i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('promotion.edit', $promotion->id)}}" data-original-title="" title="">
+                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('promotions.edit', $promotion->id)}}" data-original-title="" title="">
                                                         <i class="fas fa-edit"></i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <form action="{{route('promotion.destroy', $promotion->id)}}" method="post">
+                                                    <form action="{{route('promotions.destroy', $promotion->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est-tu sur de vouloir supprimer cette promotion ?')">

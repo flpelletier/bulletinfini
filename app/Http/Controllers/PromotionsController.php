@@ -9,7 +9,50 @@ class PromotionsController extends Controller
 {
     public function index()
     {
-        $promotion = Promotion::all();
-        return view('promotions.index', compact('promotion'));
+        $promotions = Promotion::all();
+        return view('promotions.index', compact('promotions'));
+    }
+    public function create()
+    {
+        return view('promotions.create');
+    }
+    public function edit($id)
+    {
+        $promotion = Promotion::find($id);
+        return view('promotions.edit',  compact('promotion'));
+    }
+    public function show($id)
+    {
+        $promotion = Promotion::find($id);
+        return view('promotions.show', compact('promotion'));
+    }
+    public function store(Request $request)
+    {
+        $promotion = new Promotion;
+
+        $promotion->intitule = $request->get('intitule');
+        $promotion->année = $request->get('annee');
+        $promotion->updated_at = now();
+        $promotion->save();
+
+        return redirect()->route('promotions.index')->withStatus(__('Promotion créée avec succès.'));
+    }
+    public function update(Request $request, $id)
+    {
+        $promotion = Promotion::find($id);
+
+        $promotion->intitule = $request->get('intitule');
+        $promotion->année = $request->get('annee');
+        $promotion->updated_at = now();
+        $promotion->save();
+
+        return redirect()->route('promotions.index')->withStatus(__('Promotion modifiée avec succès.'));
+    }
+    public function destroy($id)
+    {
+        $promotion = Promotion::find($id);
+
+        $promotion->delete();
+        return redirect()->route('promotions.index')->withStatus(__('Promotion supprimée avec succès'));
     }
 }
