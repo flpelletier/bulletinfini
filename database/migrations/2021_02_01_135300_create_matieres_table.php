@@ -18,6 +18,7 @@ class CreateMatieresTable extends Migration
             $table->string("intitule");
             $table->float("coefficient");
             $table->bigInteger("groupe-matiere_id")->unsigned();
+            $table->bigInteger("promotion_id")->unsigned();
             $table->timestamps();
         });
     }
