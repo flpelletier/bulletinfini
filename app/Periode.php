@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Matiere extends Model
+class Periode extends Model
 {
     public function notes()
     {
         return $this->hasMany(Note::class);
     }
-    public function groupematiere()
+    public function promotion()
     {
-        return $this->belongsTo(GroupeMatiere::class);
+        return $this->belongsTo(Promotion::class);
     }
 }
