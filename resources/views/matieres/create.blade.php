@@ -19,7 +19,7 @@
             <div class="card-body ">
               <div class="row">
                 <div class="col-md-12 ">
-                  <a href="{{ route('eleves.index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
+                  <a href="{{ route('notes.index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
                 </div>
               </div>
               <br>
