@@ -59,7 +59,17 @@
                                         </th>
                                         <th>
                                             <center>
+                                                Promotion
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
                                                 Elève
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
+                                                Période
                                             </center>
                                         </th>
                                         <th width="280px">
@@ -70,8 +80,7 @@
                                         <th width="50px"><input type="checkbox" id="master"></th>
                                     </tr>
                                 <tbody>
-
-                                    @foreach ($note as $notes)
+                                    @foreach ($notes as $note)
                                     <tr>
                                         <td>
                                             <center>
@@ -79,28 +88,42 @@
                                             </center>
                                         </td>
                                         <td>
-                                            <label class="badge badge-danger">
+                                            @if($note->note <= 8) <label class="badge badge-danger">
                                                 {{ $note->note }}
-                                            </label>
+                                                </label>
+                                                @elseif($note->note >= 12 )
+                                                <label class="badge badge-success">
+                                                    {{ $note->note }}
+                                                </label>
+                                                @elseif($note->note >= 9 && $note->note <= 11) <label class="badge badge-warning">
+                                                    {{ $note->note }}
+                                                    </label>
+                                                    @endif
                                         </td>
                                         <td>
-                                            
+                                            {{ $note->matiere->intitule }}
                                         </td>
                                         <td>
-                                            
+                                            {{ $note->eleve->promotion->intitule }}
+                                        </td>
+                                        <td>
+                                            {{ $note->eleve->nom }} {{ $note->eleve->prenom }}
+                                        </td>
+                                        <td>
+                                            {{ $note->periode->nom }}
                                         </td>
                                         <td>
                                             <center>
                                                 <div style="display: inline-flex;">
-                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('note.show', $note->id)}}" data-original-title="" title="">
+                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('notes.show', $note->id)}}" data-original-title="" title="">
                                                         <i class="fas fa-eye"></i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('note.edit', $note->id)}}" data-original-title="" title="">
+                                                    <a rel="tooltip" class="btn btn-linght" href="{{route('notes.edit', $note->id)}}" data-original-title="" title="">
                                                         <i class="fas fa-edit"></i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <form action="{{route('note.destroy', $note->id)}}" method="post">
+                                                    <form action="{{route('notes.destroy', $note->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est-tu sur de vouloir supprimer cette note ?')">

@@ -14,7 +14,6 @@ class MatieresController extends Controller
     public function index()
     {
         $matieres = Matiere::all();
-        $groupe = GroupeMatiere::all();
         return view('matieres.index', compact('matieres'));
     }
     public function show($id)
@@ -22,14 +21,22 @@ class MatieresController extends Controller
         $matiere = Matiere::find($id);
         return view('matieres.show', compact('matiere'));
     }
-    public function edit($id)
+    public function create()
     {
-        $matiere = Matiere::find($id);
-        $groupe = GroupeMatiere::all();
+        $groupes = GroupeMatiere::all();
         $promotions = Promotion::all();
         $professeurs  = Prof::all();
 
-        return view('matieres.edit', compact('matiere', 'groupe', 'promotions', 'professeurs'));
+        return view('matieres.create', compact('groupes', 'promotions', 'professeurs'));
+    }
+    public function edit($id)
+    {
+        $matiere = Matiere::find($id);
+        $groupes = GroupeMatiere::all();
+        $promotions = Promotion::all();
+        $professeurs  = Prof::all();
+
+        return view('matieres.edit', compact('matiere', 'groupes', 'promotions', 'professeurs'));
     }
     public function store(Request $request)
     {
@@ -86,7 +93,6 @@ class MatieresController extends Controller
     }
     public function destroy($id)
     {
-        //
         $matiere = Matiere::find($id);
 
         $matiere->delete();
