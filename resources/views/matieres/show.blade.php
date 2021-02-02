@@ -41,7 +41,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Groupe de matière') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;"></div>
+                                    <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;"> {{ $matiere->groupe_matiere->intitule}}</div>
 
                                 </div>
                             </div>

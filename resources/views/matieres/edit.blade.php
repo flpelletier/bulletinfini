@@ -66,9 +66,9 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <select name="groupematiere" id="groupe_matiere_id->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                                            <option value="{{$matiere->groupe_matiere_id}}" selected>{{$matiere->groupematiere}}</option>
+                                            <option value="{{$matiere->groupe_matiere_id}}" selected>{{$matiere->groupe_matiere->intitule}}</option>
                                             @foreach($groupes as $groupe)
-                                            @if($groupe->id != $matiere->groupe)
+                                            @if($groupe->id != $matiere->groupe_matiere_id)
                                             <option value="{{$groupe->id}}">{{$groupe->intitule}}</option>
                                             @endif
                                             @endforeach
