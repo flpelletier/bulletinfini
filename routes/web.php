@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/managementb", "GestionBulletinController@index")->name("bulletin.index");
     Route::post("/management/bulletin", "GestionBulletinController@bulletin")->name("bulletin.manage");
 
+    Route::get('/index', 'DashboardController@index')->name('index');
+
     Route::get('/home', 'HomeController@index')->name('home');
     Route::name('admin')->get('/', 'AdminController@index');
 });
