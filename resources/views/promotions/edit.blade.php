@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+@include('alert')
 <div class="content">
     <div class="container-fluid">
         @if (session('status'))

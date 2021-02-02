@@ -47,7 +47,6 @@
                             </div>
                         </div>
                         <!-- Fin Promotion -->
-
                     </div>
                 </div>
             </div>

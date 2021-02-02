@@ -25,8 +25,8 @@
                             </div>
                         </div>
                         <!-- Fin Nom -->
-                           <!-- Année -->
-                           <div class="row">
+                        <!-- Année -->
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">{{ __('Année') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
@@ -41,7 +41,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Date de création') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="email" id="email" type="email" style="background-color : #ececec;">{{ $promotion->created_at }}</div>
+                                    <div class="form-control" name="created_at" id="created_at" type="texte" style="background-color : #ececec;">{{ $promotion->created_at }}</div>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,11 @@
                             <label class="col-sm-2 col-form-label">{{ __('Dernière modification') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="email" id="email" type="email" style="background-color : #ececec;">{{ $promotion->updated_at }}</div>
+                                    @if($promotion->updated_at != null)
+                                    <div class="form-control" name="updated_at" id="updated_at" type="texte" style="background-color : #ececec;">{{ $promotion->updated_at }}</div>
+                                    @elseif($promotion->updated_at == null)
+                                    <div class="form-control" name="updated_at" id="updated_at" type="texte" style="background-color : #ececec;">Jamais</div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
