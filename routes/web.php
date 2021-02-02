@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/matieres', 'MatieresController');
     Route::resource('/promotions', 'PromotionsController');
     Route::resource('/periodes', 'PeriodeController');
+    Route::resource('/professeurs', 'ProfesseurController');
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");
