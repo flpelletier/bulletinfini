@@ -7,9 +7,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Gestion de note Promotion {{$promotion->intitule}}</h3>
+                            <h3 class="card-title">Gestion des notes {{$promotion->intitule}}</h3>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
@@ -30,10 +29,12 @@
                                                     Matière
                                                 </th>
                                                 @foreach($promotion->eleves as $eleve)
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                    colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                    {{$eleve->nom ." " . $eleve->prenom}}
-                                                </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2"
+                                                        rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending">
+                                                        {{strtoupper($eleve->nom) ." " .strtolower($eleve->prenom) }}
+                                                    </th>
                                                 @endforeach
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                     colspan="1"
@@ -43,87 +44,66 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach($promotion->matieres as $matiere)
+                                                <tr class="odd">
+                                                    <td class="dtr-control sorting_1"
+                                                        tabindex="0">{{$matiere->intitule}}</td>
+                                                    @foreach($promotion->eleves as $eleve)
+                                                        <td class="dtr-control sorting_1"
+                                                            tabindex="0">
+                                                            @foreach($eleve->notes as $note)
+                                                                @if($note->matiere == $matiere)
+                                                                    {{$note->note}}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                    @endforeach
+                                                    <td class="dtr-control sorting_1"
+                                                        tabindex="0">
+                                                        <center>
+                                                            <div style="display: inline-flex;">
 
-{{dd($promotion->matiere)}}
+                                                                <a rel="tooltip" class="btn btn-linght"
+                                                                   href="{{route('note.add', $matiere->id)}}"
+                                                                   data-original-title="" title="">
+                                                                    <span style="color:#4ae04a"><i
+                                                                            class="fas fa-plus-square"></i></span>
+                                                                    <div class="ripple-container"></div>
+                                                                </a>
+                                                                <form
+                                                                    action="{{route('promotions.destroy', $promotion->id)}}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" rel="tooltip"
+                                                                            class="btn  btn-succes "
+                                                                            onclick="return confirm('Est-tu sur de vouloir supprimer cette promotion ?')">
+                                                                        <span style="color: red"><i
+                                                                                class="fas fa-edit"></i></span>
 
-                                            <tr class="odd">
-                                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                                <td>Firefox 1.0</td>
-                                                <td>Win 98+ / OSX.2+</td>
-                                                <td>1.7</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                                <td>Firefox 1.5</td>
-                                                <td>Win 98+ / OSX.2+</td>
-                                                <td>1.8</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                                <td>Firefox 2.0</td>
-                                                <td>Win 98+ / OSX.2+</td>
-                                                <td>1.8</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                                <td>Firefox 3.0</td>
-                                                <td>Win 2k+ / OSX.3+</td>
-                                                <td>1.9</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Camino 1.0</td>
-                                                <td>OSX.2+</td>
-                                                <td>1.8</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Camino 1.5</td>
-                                                <td>OSX.3+</td>
-                                                <td>1.8</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Netscape 7.2</td>
-                                                <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                                <td>1.7</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Netscape Browser 8</td>
-                                                <td>Win 98SE+</td>
-                                                <td>1.7</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Netscape Navigator 9</td>
-                                                <td>Win 98+ / OSX.2+</td>
-                                                <td>1.8</td>
-                                                <td>A</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Mozilla 1.0</td>
-                                                <td>Win 95+ / OSX.1+</td>
-                                                <td>1</td>
-                                                <td>A</td>
-                                            </tr>
+                                                                    </button>
+                                                                </form>
+                                                                <a rel="tooltip" class="btn btn-linght"
+                                                                   href="{{route('promotions.show', $promotion->id)}}"
+                                                                   data-original-title="" title="">
+                                                                    <i class="fas fa-eye"></i>
+                                                                    <div class="ripple-container"></div>
+                                                                </a>
+                                                            </div>
+                                                        </center>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
                                             </tbody>
                                             <tfoot>
                                             <tr>
                                                 <th rowspan="1" colspan="1">Matière</th>
-                                                @foreach()
-                                                <th rowspan="1" colspan="3">Notes</th>
+                                                @foreach($promotion->eleves as $eleve)
+                                                    <th rowspan="1"
+                                                        colspan="1"> {{strtoupper($eleve->nom) ." " .strtolower($eleve->prenom) }}</th>
+                                                @endforeach
                                                 <th rowspan="1" colspan="1">Action</th>
-
                                             </tr>
                                             </tfoot>
                                         </table>
@@ -131,14 +111,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
 
 @endsection
