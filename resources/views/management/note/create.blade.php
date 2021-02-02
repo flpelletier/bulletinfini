@@ -20,7 +20,7 @@
                                 <!-- textarea -->
                                 <div class="form-group">
                                     <label>Description de la note (facultatif)</label>
-                                    <textarea name="description" class="form-control" rows="1"
+                                    <textarea required name="description" class="form-control" rows="1"
                                               placeholder="Enter ..."></textarea>
                                 </div>
                             </div>

@@ -22,14 +22,16 @@ class GestionNoteController extends Controller
     function create(Request $request){
         $matiere = Matiere::find($request->matiere);
         foreach ($matiere->promotion->eleves as $eleve){
-            $note = new Note();
-            $note->note = $request->input("note_".$eleve->id);
-            $note->eleve_id = $eleve->id;
-            $note->matiere_id = $request->matiere;
-            $note->periode_id = $request->input("periode");
-            $note->coefficient = $request->input("coef");
-            $note->description = $request->input("description");
-            $note->save();
+            if($request->input("note_".$eleve->id)){
+                $note = new Note();
+                $note->note = $request->input("note_".$eleve->id);
+                $note->eleve_id = $eleve->id;
+                $note->matiere_id = $request->matiere;
+                $note->periode_id = $request->input("periode");
+                $note->coefficient = $request->input("coef");
+                $note->description = $request->input("description");
+                $note->save();
+            }
         }
         return $this->index();
     }
