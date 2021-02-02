@@ -170,6 +170,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('periodes.index')}}" class="nav-link">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <p>
+                                                Périodes
+                                            </p>
+                                        </a>
+                                    </li>
                                 </center>
                             </ul>
                         </li>
