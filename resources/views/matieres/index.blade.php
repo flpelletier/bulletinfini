@@ -62,9 +62,7 @@
                       {{ $matiere->coefficient }}
                     </td>
                     <td>
-                      <!--
                       {{ $matiere->groupe_matiere}}
-                      -->
                     </td>
                     <td>{{ $matiere->promotion->intitule }}</td>
                     <td> {{ $matiere->prof->nom }} {{ $matiere->prof->prenom }}</td>

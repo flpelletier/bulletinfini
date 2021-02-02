@@ -60,6 +60,22 @@
                                     </div>
                                 </div>
                             </div>
+                               <!-- Groupe Matière -->
+                               <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Groupe') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <select name="groupematiere" id="groupe_matiere_id->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                                            <option value="{{$matiere->groupe_matiere_id}}" selected>{{$matiere->groupematiere}}</option>
+                                            @foreach($groupes as $groupe)
+                                            @if($groupe->id != $matiere->groupe)
+                                            <option value="{{$groupe->id}}">{{$groupe->intitule}}</option>
+                                            @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Promotion -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Promotion') }}</label>
@@ -81,7 +97,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Professeur') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <select name="promotion" id="promotion->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                                        <select name="professeur" id="promotion->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                             <option value="{{$matiere->prof_id}}" selected>{{$matiere->prof->nom}}</option>
                                             @foreach($professeurs as $professeur)
                                             @if($professeur->id != $matiere->prof_id)
