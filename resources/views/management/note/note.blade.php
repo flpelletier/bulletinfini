@@ -70,19 +70,13 @@
                                                                             class="fas fa-plus-square"></i></span>
                                                                     <div class="ripple-container"></div>
                                                                 </a>
-                                                                <form
-                                                                    action="{{route('promotions.destroy', $promotion->id)}}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" rel="tooltip"
-                                                                            class="btn  btn-succes "
-                                                                            onclick="return confirm('Est-tu sur de vouloir supprimer cette promotion ?')">
-                                                                        <span style="color: red"><i
-                                                                                class="fas fa-edit"></i></span>
-
-                                                                    </button>
-                                                                </form>
+                                                                <a rel="tooltip" class="btn btn-linght"
+                                                                   href="{{route('note.edit', $matiere->id)}}"
+                                                                   data-original-title="" title="">
+                                                                   <span style="color: red"><i
+                                                                           class="fas fa-edit"></i></span>
+                                                                    <div class="ripple-container"></div>
+                                                                </a>
                                                                 <a rel="tooltip" class="btn btn-linght"
                                                                    href="{{route('promotions.show', $promotion->id)}}"
                                                                    data-original-title="" title="">

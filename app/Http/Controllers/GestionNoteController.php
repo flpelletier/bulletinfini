@@ -7,6 +7,7 @@ use App\Matiere;
 use App\Note;
 use App\Promotion;
 use Illuminate\Http\Request;
+use Mockery\Matcher\Not;
 
 class GestionNoteController extends Controller
 {
@@ -33,6 +34,20 @@ class GestionNoteController extends Controller
                 $note->save();
             }
         }
+        return $this->index();
+    }
+    function edit_note($id){
+        return view("management.note.edit")->with("matiere", Matiere::find($id));
+    }
+    function update(Request $request){
+        $note = Note::Find($request->id_note);
+        $note->note = $request->note;
+        $note->update();
+        return $this.$this->index();
+    }
+    function destroy(Request $request){
+        $note = Note::find($request->id_note_destroy);
+        $note->delete();
         return $this->index();
     }
 }

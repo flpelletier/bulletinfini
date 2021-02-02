@@ -63,6 +63,7 @@
             <div class="card-footer">
                 <center>
                     <button type="submit" name="matiere" value="{{$matiere->id}}" class="btn btn-info">Valider</button>
+
                 </center>
             </div>
             <!-- /.card-footer -->
