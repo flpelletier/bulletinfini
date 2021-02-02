@@ -34,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="" class="nav-link">Accueil</a>
+                    <a href="{{route('index')}}" class="nav-link">Accueil</a>
                 </li>
             </ul>
 
@@ -167,6 +167,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <i class="nav-icon fas fa-marker"></i>
                                             <p>
                                                 Notes
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('periodes.index')}}" class="nav-link">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <p>
+                                                Périodes
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('professeurs.index')}}" class="nav-link">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                            <p>
+                                                Professeurs
                                             </p>
                                         </a>
                                     </li>

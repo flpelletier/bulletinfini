@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/matieres', 'MatieresController');
     Route::resource('/promotions', 'PromotionsController');
     Route::resource('/periodes', 'PeriodeController');
+    Route::resource('/professeurs', 'ProfesseurController');
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");
@@ -39,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("/management/note/create", "GestionNoteController@create")->name("note.create");
     Route::get("/managementb", "GestionBulletinController@index")->name("bulletin.index");
     Route::post("/management/bulletin", "GestionBulletinController@bulletin")->name("bulletin.manage");
+
+    Route::get('/index', 'DashboardController@index')->name('index');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::name('admin')->get('/', 'AdminController@index');
