@@ -10,7 +10,7 @@ class Matiere extends Model
     {
         return $this->hasMany(Note::class);
     }
-    public function groupematiere()
+    public function groupe_matiere()
     {
         return $this->belongsTo(GroupeMatiere::class);
     }
