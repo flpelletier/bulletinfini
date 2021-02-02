@@ -17,7 +17,10 @@
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Periodes </h3>
                     </div>
-                    <button class="btn btn-success">Ajouter une Periode</button>
+                    <a class="btn btn-success" href="{{route('periodes.create')}}">
+                        <button class=" btn btn-success">Ajouter une Periode</button>
+                    </a>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="table_1" class="table">
@@ -120,7 +123,9 @@
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-user-graduate"></i> Eleves </h3>
                     </div>
-                    <button class="btn btn-primary">Ajouter un Eleve</button>
+                    <a class="btn btn-primary" href="{{route('eleves.create')}}">
+                        <button class="btn btn-primary">Ajouter un Eleve</button>
+                    </a>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="table_2" class="table">
@@ -213,7 +218,9 @@
                     <div class="card-header">
                         <h3 class="text-white card-title"><i class="fas fa-book"></i>Matières</h3>
                     </div>
-                    <button class="btn btn-warning text-white">Ajouter une Matière</button>
+                    <a class="btn btn-warning" href="{{route('matieres.create')}}">
+                        <button class="btn btn-warning text-white">Ajouter une Matière</button>
+                    </a>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="table_3" class="table">
