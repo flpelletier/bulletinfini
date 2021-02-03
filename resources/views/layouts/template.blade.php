@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="apple-touch-icon" sizes="76x76" href="{{url('./images/icon.ico')}}">
-    <link rel="icon" type="image/png" href="{{url('./images/icon.ico')}}">
+  <link rel="icon" type="image/png" href="{{url('./images/icon.ico')}}">
     <title>Bulletinfini | Administration</title>
 
     <!-- Font Awesome Icons -->
@@ -126,15 +126,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link ">
                                 <i class=" nav-icon fas fa-database"></i>
                                 <p>
                                     Données
-                                    <i class="right fas fa-angle-right"></i>
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" style="display: block;">
                                 <center>
                                     <li class="nav-item">
                                         <a href="{{route('promotions.index')}}" class="nav-link">
