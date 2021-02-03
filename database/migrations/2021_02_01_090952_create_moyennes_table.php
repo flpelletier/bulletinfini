@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBulletinsTable extends Migration
+class CreateMoyennesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBulletinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bulletins', function (Blueprint $table) {
+        Schema::create('moyennes', function (Blueprint $table) {
             $table->id();
-            $table->string("nom");
-            $table->string("path");
-            $table->string("date");
+            $table->string("note");
             $table->bigInteger("eleve_id")->unsigned();
+            $table->bigInteger("matiere_id")->unsigned();
             $table->bigInteger("periode_id")->unsigned();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateBulletinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bulletins');
+        Schema::dropIfExists('moyennes');
     }
 }

@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bulletin extends Model
+class Moyenne extends Model
 {
-    public function promotion()
-    {
-        return $this->belongsTo(Promotion::class);
-    }
     public function eleve()
     {
         return $this->belongsTo(Eleve::class);
+    }
+    public function matiere()
+    {
+        return $this->belongsTo(Matiere::class);
     }
     public function periode()
     {
