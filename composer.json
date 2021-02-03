@@ -16,11 +16,8 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.5",
-<<<<<<< Updated upstream
-        "laravelcollective/html": "^6.2"
-=======
+        "laravelcollective/html": "^6.2",
         "spipu/html2pdf": "^5.2"
->>>>>>> Stashed changes
     },
     "require-dev": {
         "facade/ignition": "^2.0",

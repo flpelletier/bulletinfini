@@ -16,6 +16,8 @@ class CreateMoyennesTable extends Migration
         Schema::create('moyennes', function (Blueprint $table) {
             $table->id();
             $table->string("note");
+            $table->string("exam")->nullable();;
+            $table->string("continue")->nullable();
             $table->string("remarque")->nullable();
             $table->bigInteger("eleve_id")->unsigned();
             $table->bigInteger("matiere_id")->unsigned();

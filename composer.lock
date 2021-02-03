@@ -4,15 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-    "content-hash": "d0213206777d8661d7204a882db857ec",
-=======
-    "content-hash": "d06c38d6b299e9a647c20346e1e74501",
->>>>>>> main
-=======
-    "content-hash": "69ad004e2ac602ef12a7cdc08992f9fa",
->>>>>>> Stashed changes
+    "content-hash": "aca24e7aaa848041886aeffc3aa0d1d6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1129,10 +1121,6 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "support": {
-                "issues": "https://github.com/LaravelCollective/html/issues",
-                "source": "https://github.com/LaravelCollective/html"
-            },
             "time": "2020-12-15T20:20:05+00:00"
         },
         {
@@ -6363,6 +6351,5 @@
     "platform": {
         "php": "^7.2.5|^8.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "platform-dev": []
 }

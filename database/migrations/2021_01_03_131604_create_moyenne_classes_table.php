@@ -15,6 +15,9 @@ class CreateMoyenneClassesTable extends Migration
     {
         Schema::create('moyenne_classes', function (Blueprint $table) {
             $table->id();
+            $table->string("note");
+            $table->bigInteger("periode_id")->unsigned();
+            $table->bigInteger("matiere_id")->unsigned();
             $table->timestamps();
         });
     }

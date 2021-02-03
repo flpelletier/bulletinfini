@@ -52,6 +52,12 @@ class Foreignkey extends Migration
         Schema::table('periodes', function (Blueprint $table) {
             $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
         });
+        Schema::table('moyenne_classes', function (Blueprint $table) {
+            $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('cascade');
+        });
+        Schema::table('moyenne_classes', function (Blueprint $table) {
+            $table->foreign('matiere_id')->references('id')->on('matieres')->onDelete('cascade');
+        });
 
 
     }

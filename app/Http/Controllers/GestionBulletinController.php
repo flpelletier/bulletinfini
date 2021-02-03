@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Matiere;
+use App\MoyenneClasse;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Moyenne;
 use App\Periode;
@@ -40,15 +42,33 @@ class GestionBulletinController extends Controller
 
                         $number = 0;
                         $total = 0;
+                        $numberc = 0;
+                        $totalc = 0;
+                        $numbere = 0;
+                        $totale = 0;
                         foreach ($eleve->notes->where('matiere_id', $matiere->id) as $note) {
 
                             $total += $note->note * $note->coefficient;
                             $number += $note->coefficient;
+                            if ($note->type == "continue") {
+                                $totalc += $note->note * $note->coefficient;
+                                $numberc += $note->coefficient;
+                            } else {
+                                $totale += $note->note * $note->coefficient;
+                                $numbere += $note->coefficient;
+                            }
                         }
                         $d = Moyenne::where("eleve_id", $eleve->id)->where("matiere_id", $matiere->id)->where("periode_id", $periode->id)->get();
                         if ($d->count() == 0) {
                             $moyenne = new Moyenne();
                             $moyenne->note = $total / $number;
+                            if ($numbere != 0) {
+                                $moyenne->exam = $totale / $numbere;
+                            }
+                            if ($numberc != 0) {
+                                $moyenne->continue = $totalc / $numberc;
+                            }
+
                             $moyenne->periode_id = $periode->id;
                             $moyenne->eleve_id = $eleve->id;
                             $moyenne->matiere_id = $matiere->id;
@@ -62,12 +82,49 @@ class GestionBulletinController extends Controller
 
                 }
 
-                $html2pdf = new Html2Pdf();
-                $html2pdf->writeHTML($this->gethtml($eleve, $periode));
-                $html2pdf->output();
 
             }
         }
+
+
+        foreach ($periode->promotion->matieres as $matiere) {
+
+            $total = 0;
+            $number = 0;
+            foreach ($periode->promotion->eleves as $eleve) {
+                if ($request->input($eleve->id) != null) {
+                    foreach ($eleve->moyennes->where("matiere_id", $matiere->id) as $moy) {
+                        $total += $moy->note;
+                        $number++;
+                    }
+                }
+            }
+
+            if ($total != 0) {
+                $d = MoyenneClasse::where("matiere_id", $matiere->id)->where("periode_id", $periode->id)->get();
+                if ($d->count() == 0) {
+                    $mc = new MoyenneClasse();
+                    $mc->periode_id = $periode->id;
+                    $mc->matiere_id = $matiere->id;
+                    $mc->note = $total / $number;
+                    $mc->save();
+                } else {
+                    $d[0]->note = $total / $number;
+                    $d[0]->save();
+                }
+
+            }
+
+
+        }
+        foreach ($periode->promotion->eleves as $eleve) {
+            if ($request->input($eleve->id) != null) {
+                $html2pdf = new Html2Pdf();
+                $html2pdf->writeHTML($this->gethtml($eleve, $periode));
+                $html2pdf->output();
+            }
+        }
+
 
     }
 
@@ -89,7 +146,7 @@ class GestionBulletinController extends Controller
 <div style="clear: both; float: left; width: 550px;">
     <h3 style="text-align: center;"><img src="' . url("images/header.png") . '" /></h3>
 </div>
-<h3 style="text-align: center;">RELEVE DE NOTES&nbsp; - Promotion '.$eleve->promotion->annee.' - '.$periode->nom.'</h3>
+<h3 style="text-align: center;">RELEVE DE NOTES&nbsp; - Promotion ' . $eleve->promotion->annee . ' - ' . $periode->nom . '</h3>
 <table style="width: 100%; height: 100%; border-color: white;">
     <tbody style="width: 100%; height: 100%; border-color: white;">
     <tr style="height: 83px; border-color: white;">
@@ -97,8 +154,8 @@ class GestionBulletinController extends Controller
             <p>Formation :&nbsp;</p>
         </td>
         <td style="width: 74.6999%; text-align: center; height: 83px; border-color: white;">
-            <p>XXX</p>
-            <p>XXXX</p>
+            <p>' . $eleve->promotion->nom_complet . '</p>
+            <p>' . $eleve->promotion->description . '</p>
         </td>
     </tr>
     <tr style="height: 53px;">
@@ -106,7 +163,7 @@ class GestionBulletinController extends Controller
             <p>Nom de l\'apprentis :&nbsp; &nbsp;&nbsp;</p>
         </td>
         <td style="width: 74.6999%; height: 53px; border-color: white;">
-            <p>'.strtoupper($eleve->nom) .' '.strtolower($eleve->prenom) .'</p>
+            <p>' . strtoupper($eleve->nom) . ' ' . strtolower($eleve->prenom) . '</p>
         </td>
     </tr>
     </tbody>
@@ -146,30 +203,36 @@ class GestionBulletinController extends Controller
             <p>Classe</p>
         </td>
     </tr>';
-        foreach ($eleve->moyennes as $moyenne){
-            $html = $html .'
+        foreach ($eleve->moyennes as $moyenne) {
+            if ($moyenne->matiere->intitule != "Livret de suivi") {
+                $html = $html . '
         <tr style="height: p24px;">
         <td style="height: p24px;">
-            <p>'.$moyenne->matiere->intitule.'</p>
+            <p>' . $moyenne->matiere->intitule . '</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$moyenne->matiere->coefficient.'</p>
+            <p>' . $moyenne->matiere->coefficient . '</p>
         </td>
         <td style="height: p24px;">
-            <p>12,50</p>
+            <p>' . $moyenne->continue . '</p>
         </td>
-        <td style="height: p24px;">&nbsp;</td>
+        <td style="height: p24px;"><p>';
+                if ($moyenne->exam != null) {
+                    $html = $html . $moyenne->exam;
+                }
+
+                $html = $html . '</p></td>
         <td style="height: p24px;">
-            <p>12,50</p>
+            <p>' . $moyenne->note . '</p>
         </td>
         <td style="height: p24px;">
-            <p>11,39</p>
+            <p>' . $moyenne->matiere->moyenne_classes[0]->note . '</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$moyenne->remarque.'</p>
+            <p>' . $moyenne->remarque . '</p>
         </td>
         </tr>';
-
+            }
         }
 
         $html = $html . '
@@ -178,16 +241,46 @@ class GestionBulletinController extends Controller
             <p>Moyenne</p>
         </td>
         <td style="height: p24px;">
-            <p>14 ,34</p>
+            <p>';
+        $total = 0;
+        $number = 0;
+        foreach ($eleve->moyennes as $moyenne) {
+            if ($moyenne->matiere->intitule != "Livret de suivi") {
+                $total += $moyenne->note * $moyenne->matiere->coefficient;
+                $number += $moyenne->matiere->coefficient;
+            }
+        }
+        $totalc = 0;
+        $numberc = 0;
+        foreach ($eleve->moyennes as $moyenne) {
+            if ($moyenne->matiere->intitule != "Livret de suivi") {
+                $totalc += $moyenne->matiere->moyenne_classes[0]->note * $moyenne->matiere->coefficient;
+                $numberc += $moyenne->matiere->coefficient;
+            }
+        }
+
+        $html = $html . $total / $number . '</p>
         </td>
         <td style="height: p24px;">
-            <p>13,00</p>
+            <p>' . $totalc / $numberc . '</p>
         </td>
         <td style="height: p24px;">
             <p></p>
         </td>
-    </tr>
-    <tr>
+    </tr>';
+        $mamls = "";
+        $ls = Matiere::where("intitule", "Livret de suivi")->where("promotion_id", $periode->promotion->id)->get();
+        if ($ls->count() == 1) {
+            $moyls = $ls[0]->moyennes;
+            $moylc = $ls[0]->moyenne_classes[0];
+            foreach ($moyls as $mmls) {
+                if ($mmls->eleve->id == $eleve->id) {
+                    $mamls = $mmls;
+                }
+            }
+            if ($moyls->count() > 0) {
+
+                $html = $html . ' <tr>
         <td style="height: 10px;" colspan="7">&nbsp;</td>
     </tr>
     <tr style="height: p24px;">
@@ -197,23 +290,22 @@ class GestionBulletinController extends Controller
     </tr>
     <tr style="height: p24px;">
         <td style="height: p24px;">
-            <p>Anglais Professionnel</p>
+            <p>Livret de Suivie</p>
         </td>
         <td style="height: p24px;">
             <p>1</p>
         </td>
-        <td style="height: p24px;">
-            <p>12,50</p>
-        </td>
-        <td style="height: p24px;">&nbsp;</td>
-        <td style="height: p24px;">
-            <p>12,50</p>
+        <td style="height: p24px;" colspan="2">
+            <p></p>
         </td>
         <td style="height: p24px;">
-            <p>11,39</p>
+            <p>'.$mamls->note.'</p>
         </td>
         <td style="height: p24px;">
-            <p>Examen annul&eacute; pour cause de crise sanitaire.</p>
+            <p>'.$moylc->note.'</p>
+        </td>
+        <td style="height: p24px;">
+            <p>'.$mamls->remarque.'</p>
         </td>
     </tr>
     <tr>
@@ -224,16 +316,21 @@ class GestionBulletinController extends Controller
             <p>Moyenne</p>
         </td>
         <td style="height: p24px;">
-            <p>14 ,34</p>
+            <p>'.$mamls->note.'</p>
         </td>
         <td style="height: p24px;">
-            <p>13,00</p>
+            <p>'.$moylc->note.'</p>
         </td>
         <td style="height: p24px;">
             <p></p>
         </td>
     </tr>
-      <tr>
+      <tr>';
+            }
+        }
+
+        $html = $html . '
+
 <td style="height: 10px;" colspan="7">&nbsp;</td>
 </tr>
 <tr style="height: p24px;">
@@ -243,7 +340,7 @@ class GestionBulletinController extends Controller
 </tr>
 <tr style="height: p24px;">
 <td style="height: p24px;border-color: white;" colspan="1">
-<p>Moyenne '.$periode->nom.'</p>
+<p>Moyenne ' . $periode->nom . '</p>
 </td>
 <td style="height: p24px; border-color: white;" colspan="6">
 <p>XX/20</p>
@@ -260,7 +357,7 @@ class GestionBulletinController extends Controller
 <p>A dole le</p>
 </td>
 <td style="height: p24px;border-color: white;">
-<p>' . date("m.d.y").'</p>
+<p>' . date("m.d.y") . '</p>
 </td>
   <td style="height: p24px;border-color: white;">
 <p></p>
@@ -274,7 +371,7 @@ class GestionBulletinController extends Controller
 <p>Le responsable de dispositif : </p>
 </td>
 <td style="height: p24px;border-color: white;">
-<p>'. Auth::user()->surname.' '.Auth::user()->name .'</p>
+<p>' . Auth::user()->surname . ' ' . Auth::user()->name . '</p>
 </td>
   <td style="height: p24px;border-color: white;">
 <p></p>

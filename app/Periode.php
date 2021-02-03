@@ -22,4 +22,8 @@ class Periode extends Model
     {
         return $this->hasMany(Moyenne::class);
     }
+    public function moyenne_classes()
+    {
+        return $this->hasMany(MoyenneClasse::class);
+    }
 }

@@ -14,6 +14,10 @@ class Matiere extends Model
     {
         return $this->hasMany(Moyenne::class);
     }
+    public function moyenne_classes()
+    {
+        return $this->hasMany(MoyenneClasse::class);
+    }
     public function groupe_matiere()
     {
         return $this->belongsTo(GroupeMatiere::class);
