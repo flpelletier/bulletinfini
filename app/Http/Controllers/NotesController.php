@@ -60,6 +60,8 @@ class NotesController extends Controller
         $note = new Note();
 
         $note->note = $request->input('note');
+        $note->type = $request->input('type');
+        $note->description = $request->input('description');
         $note->coefficient = $request->input('coefficient');
         $note->matiere_id = $request->input('matiere');
         $note->eleve_id = $request->input('eleve');
@@ -84,6 +86,8 @@ class NotesController extends Controller
         }
 
         $note->note = $request->input('note');
+        $note->type = $request->input('type');
+        $note->description = $request->input('description');
         $note->coefficient = $request->input('coefficient');
         $note->matiere_id = $request->input('matiere');
         $note->eleve_id = $request->input('eleve');

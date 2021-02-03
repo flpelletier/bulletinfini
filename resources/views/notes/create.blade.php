@@ -61,13 +61,25 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="type" id="type->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="" selected>Choisir un type</option>
+                      <option value="Continu">Continu</option>
+                      <option value="Examen">Examen</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
               <!-- Matière -->
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">
                     <select name="matiere" id="matiere->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                    <option value="" selected>Choisir une matière</option>
+                      <option value="" selected>Choisir une matière</option>
                       @foreach($matieres as $matiere)
                       <option value="{{$matiere->id}}">{{$matiere->intitule}}</option>
                       @endforeach
@@ -89,8 +101,8 @@
                   </div>
                 </div>
               </div>
-               <!-- Période -->
-               <div class="row">
+              <!-- Période -->
+              <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Période') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">

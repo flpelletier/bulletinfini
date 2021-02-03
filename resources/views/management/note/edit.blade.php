@@ -43,8 +43,10 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Note : </label>
-                                    <select name="coef" class="custom-select rounded-0" onselect="editor()"
+                                    <select name="note" class="custom-select rounded-0" onselect="editor()"
                                             onchange="editor()" id="note_selector">
+                                            <option value="{{$eleve->note}}">{{$eleve->note}}</option>
+
                                     </select>
                                 </div>
                             </div>

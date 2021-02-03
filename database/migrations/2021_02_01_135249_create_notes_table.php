@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->string('note');
             $table->string('description')->nullable();
             $table->float('coefficient');
+            $table->enum('type', array ('continue', 'examen'))->default('continue');
             $table->bigInteger('matiere_id')->unsigned();
             $table->bigInteger('eleve_id')->unsigned();
             $table->bigInteger('periode_id')->unsigned();

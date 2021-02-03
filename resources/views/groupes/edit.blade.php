@@ -60,13 +60,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ml-auto mr-auto text-center">
-                                <button type="submit" class="btn btn-success">Modifier</button>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Matières') }}</label>
+                                <div class="form-group">
+                                    @foreach($matiere as $mat)
+                                    @if(empty($mat->groupe_matiere_id))
+                                    <label>{{ Form::checkbox('mat[]', $mat->id, false, array('class' => 'mat')) }} {{ $mat->intitule }}</label>
+                                    <br />
+                                    @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
+                        <div class="ml-auto mr-auto text-center">
+                            <button type="submit" class="btn btn-success">Modifier</button>
+                        </div>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
 </div>

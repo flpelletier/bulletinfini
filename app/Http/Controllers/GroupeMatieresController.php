@@ -33,7 +33,7 @@ class GroupeMatieresController extends Controller
     public function edit($id)
     {
         $groupe = GroupeMatiere::find($id);
-        $matieres = Matiere::all();
+        $matiere = Matiere::all();
 
         return view('groupes.edit', compact('matiere', 'groupe'));
     }

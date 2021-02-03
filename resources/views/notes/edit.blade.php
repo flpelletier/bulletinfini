@@ -49,6 +49,21 @@
                 </div>
               </div>
               <!-- ./Note -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="type" id="type->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="{{$note->type}}">{{$note->type}}</option>
+                      @if($note->type == "continue")
+                      <option value="Examen">Examen</option>
+                      @elseif($note->type == "examen")
+                      <option value="Continu">Continu</option>
+                      @endif
+                    </select>
+                  </div>
+                </div>
+              </div>
               <!-- Description -->
               <div class="row">
                 <label for="nom" class="col-sm-2 col-form-label">{{ __('Description') }}</label>
@@ -113,7 +128,7 @@
                 <div class="col-sm-7">
                   <div class="form-group">
                     <select name="periode" id="periode->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                    <option value="{{$note->periode_id}}" selected>{{$note->periode->nom}}</option>
+                      <option value="{{$note->periode_id}}" selected>{{$note->periode->nom}}</option>
                       @foreach($periodes as $periode)
                       @if($note->periode_id != $periode->id)
                       <option value="{{$periode->id}}">{{$periode->nom}}</option>

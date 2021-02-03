@@ -34,6 +34,7 @@ class GestionNoteController extends Controller
                 $note->eleve_id = $eleve->id;
                 $note->matiere_id = $request->matiere;
                 $note->periode_id = $request->input("periode");
+                $note->type = $request->input("type");
                 $note->coefficient = $request->input("coef");
                 $note->description = $request->input("description");
                 $note->save();
@@ -43,6 +44,8 @@ class GestionNoteController extends Controller
     }
     function edit_note($id)
     {
+        //$note = Note::with('eleve')->where('matiere_id', $id)->get();
+
         return view("management.note.edit")->with("matiere", Matiere::find($id));
     }
     function show_note($id)
