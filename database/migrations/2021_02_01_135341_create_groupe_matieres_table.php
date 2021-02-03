@@ -16,6 +16,7 @@ class CreateGroupeMatieresTable extends Migration
         Schema::create('groupe_matieres', function (Blueprint $table) {
             $table->id();
             $table->string("intitule");
+            $table->integer("coefficient");
             $table->timestamps();
         });
     }

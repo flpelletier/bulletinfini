@@ -206,11 +206,7 @@
                         <table id="table_3" class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <center>
-                                            N°
-                                        </center>
-                                    </th>
+
                                     <th>
                                         <center>
                                             Intitulé
@@ -223,7 +219,12 @@
                                     </th>
                                     <th>
                                         <center>
-                                            professeur
+                                            Professeur
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            Groupe
                                         </center>
                                     </th>
                                     <th width="280px">
@@ -235,11 +236,7 @@
                             <tbody>
                                 @foreach($promotion->matieres as $matiere)
                                 <tr>
-                                    <td>
-                                        <center>
-                                            {{ $matiere->id }}
-                                        </center>
-                                    </td>
+
                                     <td>
                                         <center>
                                             {{ $matiere->intitule }}
@@ -253,6 +250,13 @@
                                     <td>
                                         <center>
                                             {{ $matiere->prof->nom }} {{ $matiere->prof->prenom }}
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            @if(!empty($matiere->groupe_matiere->intitule) )
+                                            {{ $matiere->groupe_matiere->intitule }}
+                                            @endif
                                         </center>
                                     </td>
                                     <td>

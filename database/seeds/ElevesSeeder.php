@@ -12,77 +12,88 @@ class ElevesSeeder extends Seeder
     public function run()
     {
         DB::table('eleves')->insert([
-            'nom' => 'richard',
-            'prenom' => 'julian',
+            'nom' => 'BUFFARD',
+            'prenom' => 'Hugo',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'buffard',
-            'prenom' => 'hugo',
+            'nom' => 'CHOSSON',
+            'prenom' => 'Alexis',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'leveille',
-            'prenom' => 'tristan',
+            'nom' => 'CLERC',
+            'prenom' => 'Rayane',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'diziere',
-            'prenom' => 'emma',
+            'nom' => 'CUZEAU',
+            'prenom' => 'Corentin',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'chosson',
-            'prenom' => 'alexis',
+            'nom' => 'DIZIERE',
+            'prenom' => 'Emma',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'mazoyer',
-            'prenom' => 'geoffrey',
+            'nom' => 'FRANCHESCHI',
+            'prenom' => 'Marc',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'payet',
-            'prenom' => 'damien',
+            'nom' => 'LABRUNIE',
+            'prenom' => 'Arthur',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'clerc',
-            'prenom' => 'rayane',
+            'nom' => 'LEVEILLE',
+            'prenom' => 'Tristan',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'franceschi',
-            'prenom' => 'marc',
+            'nom' => 'MAZOYER',
+            'prenom' => 'Geoffrey',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'pelletier',
-            'prenom' => 'florent',
+            'nom' => 'OUTHIER',
+            'prenom' => 'Loic',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'rouget',
-            'prenom' => 'theo',
+            'nom' => 'PAYET',
+            'prenom' => 'Damien',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
         DB::table('eleves')->insert([
-            'nom' => 'labruny',
-            'prenom' => 'arthur',
+            'nom' => 'PELLETIER',
+            'prenom' => 'Florent',
             'promotion_id' => '1',
             'created_at' => now()
         ]);
-
+        DB::table('eleves')->insert([
+            'nom' => 'RICHARD',
+            'prenom' => 'Julien',
+            'promotion_id' => '1',
+            'created_at' => now()
+        ]);
+        DB::table('eleves')->insert([
+            'nom' => 'ROUGET',
+            'prenom' => 'Théo',
+            'promotion_id' => '1',
+            'created_at' => now()
+        ]);
     }
 }

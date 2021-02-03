@@ -12,45 +12,69 @@ class ProfSeeder extends Seeder
     public function run()
     {
         DB::table('profs')->insert([
-            'nom' => 'courbez',
-            'prenom' => 'julian',
-            'genre' => "homme",
+            'nom' => 'COURBEZ',
+            'prenom' => 'Julian',
+            'genre' => "Homme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'dubief',
-            'prenom' => 'gery',
-            'genre' => "homme",
+            'nom' => 'DUBIEF',
+            'prenom' => 'Géry',
+            'genre' => "Homme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'gomez',
-            'prenom' => 'paulette',
-            'genre' => "femme",
+            'nom' => 'GOMEZ',
+            'prenom' => 'Paulette',
+            'genre' => "Femme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'pernelle',
-            'prenom' => 'sebastien',
-            'genre' => "homme",
+            'nom' => 'PERNELLE',
+            'prenom' => 'Sébastien',
+            'genre' => "Homme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'julian',
-            'prenom' => 'courbez',
-            'genre' => "homme",
+            'nom' => 'TAHRAOUI',
+            'prenom' => 'Fatna',
+            'genre' => "Femme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'ferdi',
-            'prenom' => 'goetchebeur',
-            'genre' => "homme",
+            'nom' => 'GOETGHEBEUR',
+            'prenom' => 'Ferdinand',
+            'genre' => "Homme",
             'created_at' => now()
         ]);
         DB::table('profs')->insert([
-            'nom' => 'dorian',
-            'prenom' => 'grandhay',
-            'genre' => "homme",
+            'nom' => 'GRANDHAY',
+            'prenom' => 'Dorian',
+            'genre' => "Homme",
+            'created_at' => now()
+        ]);
+        DB::table('profs')->insert([
+            'nom' => 'BOETSCH',
+            'prenom' => 'Sébastien',
+            'genre' => "Homme",
+            'created_at' => now()
+        ]);
+        DB::table('profs')->insert([
+            'nom' => 'EJUPI',
+            'prenom' => 'Békim',
+            'genre' => "Homme",
+            'created_at' => now()
+        ]);
+        DB::table('profs')->insert([
+            'nom' => 'SCHNEUWLY',
+            'prenom' => 'Olivier',
+            'genre' => "Homme",
+            'created_at' => now()
+        ]);
+        DB::table('profs')->insert([
+            'nom' => 'MOREAU',
+            'prenom' => 'Anouck',
+            'genre' => "Homme",
             'created_at' => now()
         ]);
     }

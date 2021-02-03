@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Note pour la matière {{$matiere->id}}</h4>
+                        <h4 class="card-title ">Matière n°{{$matiere->id}}</h4>
                     </div>
                     <div class="card-body ">
                         <div class="row">
@@ -25,18 +25,17 @@
                             </div>
                         </div>
                         <!-- Fin Nom -->
-                        <!-- Groupe de matière -->
+                        <!-- Coefficient -->
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">{{ __('Promotion') }}</label>
+                            <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="promotion" id="promotion" type="texte" style="background-color : #ececec;">{{ $matiere->promotion->intitule }}</div>
+                                    <div class="form-control" name="coefficient" id="nom" type="texte" style="background-color : #ececec;">{{ $matiere->coefficient }}</div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Fin Groupe de matière -->
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">{{ __('Notes') }}</label>
+                            <label class="col-sm-2 col-form-label">{{ __('Matières') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group list-group">
                                     <center>
@@ -44,25 +43,22 @@
                                             <table id="table_id" class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Élèves</th>
-                                                        <th>Note</th>
+                                                        <th>Nom</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if(!empty($notes))
-                                                    @foreach($notes as $note)
+                                                    @foreach($matiere->matieres as $mat)
                                                     <tr>
-                                                        <td>{{ $note->eleve->nom}} {{ $note->eleve->prenom}}</td>
-                                                        <td>{{ $note->note }}</td>
+                                                        <td>{{ $mat->intitule }}</td>
                                                     </tr>
                                                     @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
                                     </center>
                                 </div>
                             </div>
                         </div>
+                        <!-- Fin Coefficient -->
                     </div>
                 </div>
             </div>

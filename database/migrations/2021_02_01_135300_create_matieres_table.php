@@ -17,7 +17,7 @@ class CreateMatieresTable extends Migration
             $table->id();
             $table->string("intitule");
             $table->float("coefficient");
-            $table->bigInteger("groupe_matiere_id")->unsigned();
+            $table->bigInteger("groupe_matiere_id")->unsigned()->nullable();
             $table->bigInteger("promotion_id")->unsigned();
             $table->bigInteger("prof_id")->unsigned();
             $table->timestamps();

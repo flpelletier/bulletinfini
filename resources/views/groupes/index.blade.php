@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Toutes les matières</h4>
+            <h4 class="card-title ">Tout les groupes</h4>
           </div>
           <div class="card-body">
             @if (session('status'))
@@ -27,12 +27,12 @@
             </div>
             @endif
             <div>
-              <a href="{{route('matieres.create')}}">
+              <a href="{{route('groupes.create')}}">
                 <button style='margin-left:10px;' type="submit" class="btn btn-primary">
-                  Ajouter une matière
+                  Ajouter un groupe
                 </button>
               </a>
-              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('matiere-deleteselection') }}">
+              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('groupe-deleteselection') }}">
                 Supprimer la séléction
               </button>
             </div>
@@ -44,9 +44,6 @@
                     <th>id</th>
                     <th>Nom</th>
                     <th>Coefficient</th>
-                    <th>Groupe de matière</th>
-                    <th>Promotion</th>
-                    <th>Professeur</th>
                     <th>Actions</th>
                     <th width="50px"><input type="checkbox" id="master"></th>
                   </tr>
@@ -62,26 +59,19 @@
                       {{ $matiere->coefficient }}
                     </td>
                     <td>
-                      @if(!empty($matiere->groupe_matiere->intitule) )
-                      {{ $matiere->groupe_matiere->intitule}}
-                      @endif
-                    </td>
-                    <td>{{ $matiere->promotion->intitule }}</td>
-                    <td> {{ $matiere->prof->nom }} {{ $matiere->prof->prenom }}</td>
-                    <td>
                       <div style="display: inline-flex;">
-                        <a rel="tooltip" class="btn btn-linght" href="{{route('matieres.show', $matiere->id)}}" data-original-title="" title="">
+                        <a rel="tooltip" class="btn btn-linght" href="{{route('groupes.show', $matiere->id)}}" data-original-title="" title="">
                           <i class="fas fa-eye"></i>
                           <div class="ripple-container"></div>
                         </a>
-                        <a rel="tooltip" class="btn btn-linght" href="{{route('matieres.edit', $matiere->id)}}" data-original-title="" title="">
+                        <a rel="tooltip" class="btn btn-linght" href="{{route('groupes.edit', $matiere->id)}}" data-original-title="" title="">
                           <i class="fas fa-edit"></i>
                           <div class="ripple-container"></div>
                         </a>
-                        <form action="{{route('matieres.destroy', $matiere->id)}}" method="post">
+                        <form action="{{route('groupes.destroy', $matiere->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette matiere ?')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer ce groupe ?')">
                             <i class="fas fa-times"></i>
                           </button>
                         </form>
