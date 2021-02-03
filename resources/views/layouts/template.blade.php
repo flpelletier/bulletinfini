@@ -126,15 +126,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link ">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class=" nav-icon fas fa-database"></i>
                                 <p>
                                     Données
-                                    <i class="right fas fa-angle-left"></i>
+                                    <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" style="display: block;">
+                            <ul class="nav nav-treeview">
                                 <center>
                                     <li class="nav-item">
                                         <a href="{{route('promotions.index')}}" class="nav-link">
