@@ -21,7 +21,6 @@ class GroupeMatieresController extends Controller
         $matiereArray = array();
         //dd($matiere->matieres);
 
-        // dd($matiereArray);
         return view('groupes.show', compact('matiere', 'matieres'));
     }
     public function create()
@@ -34,7 +33,7 @@ class GroupeMatieresController extends Controller
     {
         $groupe = GroupeMatiere::find($id);
         $matiere = Matiere::all();
-
+        
         return view('groupes.edit', compact('matiere', 'groupe'));
     }
     public function store(Request $request)
@@ -63,11 +62,6 @@ class GroupeMatieresController extends Controller
             $matiere_udp->groupe_matiere_id = $matiere->id;
             $matiere_udp->save();
         }
-
-        //dd($matiereArray);
-
-
-
         return redirect()->route("groupes.index")->with('success', 'Groupe créée !');
     }
     public function update(Request $request, $id)

@@ -63,11 +63,15 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Matières') }}</label>
                                 <div class="form-group">
-                                    @foreach($matiere as $mat)
-                                    @if(empty($mat->groupe_matiere_id))
-                                    <label>{{ Form::checkbox('mat[]', $mat->id, false, array('class' => 'mat')) }} {{ $mat->intitule }}</label>
+                                    @foreach($groupe->matieres as $mat)
+                                    <label>{{ Form::checkbox('mat[]', $mat->id, $mat->intitule ? true : false, array('class' => 'intitule'))}} {{ $mat->intitule }}</label>
                                     <br />
+                                    @endforeach
+                                    @foreach($matiere as $matnew)
+                                    @if($groupe->matieres != $matiere )
+                                    <label>{{ Form::checkbox('matiere[]', $matnew->id, false, array('class' => 'matiere')) }} {{ $matnew->intitule }}</label>
                                     @endif
+                                    <br />
                                     @endforeach
                                 </div>
                             </div>
