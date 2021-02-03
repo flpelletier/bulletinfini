@@ -100,7 +100,7 @@ class GestionBulletinController extends Controller
                 }
             }
 
-            if ($total != 0) {
+            if ($number != 0) {
                 $d = MoyenneClasse::where("matiere_id", $matiere->id)->where("periode_id", $periode->id)->get();
                 if ($d->count() == 0) {
                     $mc = new MoyenneClasse();
@@ -272,7 +272,10 @@ class GestionBulletinController extends Controller
         $ls = Matiere::where("intitule", "Livret de suivi")->where("promotion_id", $periode->promotion->id)->get();
         if ($ls->count() == 1) {
             $moyls = $ls[0]->moyennes;
-            $moylc = $ls[0]->moyenne_classes[0];
+            if(isset($ls[0]->moyenne_classes[0])){
+                $moylc = $ls[0]->moyenne_classes[0];
+            }
+
             foreach ($moyls as $mmls) {
                 if ($mmls->eleve->id == $eleve->id) {
                     $mamls = $mmls;
@@ -325,11 +328,11 @@ class GestionBulletinController extends Controller
             <p></p>
         </td>
     </tr>
-      <tr>';
+      ';
             }
         }
 
-        $html = $html . '
+        $html = $html . '<tr>
 
 <td style="height: 10px;" colspan="7">&nbsp;</td>
 </tr>

@@ -109,6 +109,7 @@
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/spipu/html2pdf" />
       <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
