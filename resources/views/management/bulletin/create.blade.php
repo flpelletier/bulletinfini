@@ -3,7 +3,8 @@
 @section('content')
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Génération bulletin des {{strtoupper($periode->promotion->intitule)}} periode {{$periode->nom}}</h3>
+            <h3 class="card-title">Génération bulletin des {{strtoupper($periode->promotion->intitule)}}
+                periode {{$periode->nom}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -43,15 +44,18 @@
 
         function selectall() {
             var number = <?php echo json_encode($counter);?>;
-            for(var i = 0 ; i < number ; i++){
-                document.getElementById(i+1).checked = true;
+            for (var i = 0; i < number; i++) {
+                document.getElementById(i + 1).checked = true;
             }
         }
-        function unselectall(){
+
+        function unselectall() {
             var number = <?php echo json_encode($counter);?>;
-            for(var i = 0 ; i < number ; i++){
-                document.getElementById(i+1).checked = false;
+            for (var i = 0; i < number; i++) {
+                document.getElementById(i + 1).checked = false;
             }
         }
     </script>
 @endsection
+
+
