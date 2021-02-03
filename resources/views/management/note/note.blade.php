@@ -78,7 +78,7 @@
                                                                     <div class="ripple-container"></div>
                                                                 </a>
                                                                 <a rel="tooltip" class="btn btn-linght"
-                                                                   href="{{route('promotions.show', $promotion->id)}}"
+                                                                   href="{{route('note_matiere.show', $matiere->id)}}"
                                                                    data-original-title="" title="">
                                                                     <i class="fas fa-eye"></i>
                                                                     <div class="ripple-container"></div>
