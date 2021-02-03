@@ -13,9 +13,10 @@ class BulletinsSeeder extends Seeder
     {
         DB::table('bulletins')->insert([
             'nom' => 'Bulletin de emma',
+            'path' => "/",
             'date' => '01/01/2021',
-            'moyenne' => "0",
             'eleve_id' => "1",
+            'periode_id' => "1",
             'created_at' => now()
         ]);
     }

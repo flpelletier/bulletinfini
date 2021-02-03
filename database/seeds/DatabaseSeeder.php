@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupeMatieresSeeder::class);
         $this->call(ProfSeeder::class);
         $this->call(MatieresSeeder::class);
-        $this->call(BulletinsSeeder::class);
         $this->call(PeriodesSeeder::class);
+        $this->call(BulletinsSeeder::class);
         $this->call(NotesSeeder::class);
     }
 }

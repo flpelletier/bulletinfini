@@ -14,6 +14,10 @@ class Eleve extends Model
     {
         return $this->hasMany(Note::class);
     }
+    public function moyennes()
+    {
+        return $this->hasMany(Moyenne::class);
+    }
     public function promotion()
     {
         return $this->belongsTo(Promotion::class);

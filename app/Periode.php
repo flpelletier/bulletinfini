@@ -14,4 +14,12 @@ class Periode extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+    public function bulletins()
+    {
+        return $this->hasMany(Bulletin::class);
+    }
+    public function moyennes()
+    {
+        return $this->hasMany(Moyenne::class);
+    }
 }

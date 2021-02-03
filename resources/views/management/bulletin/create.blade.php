@@ -18,7 +18,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <input id={{$counter}}  type="checkbox">
+                          <input id={{$counter}}  name="{{$eleve->id}}" type="checkbox">
                         </span>
                                 </div>
                                 <input type="text" class="form-control" disabled
@@ -32,7 +32,7 @@
             <!-- /.card-body -->
             <div class="card-footer  text-center">
                 <a class="btn btn-info text-white" id="btn_selectall" onclick="selectall()">Séléctionner tous</a>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" name="periode" value="{{$periode->id}}" class="btn btn-success">Submit</button>
                 <a class="btn btn-info text-white" id="btn_unselectall" onclick="unselectall()">Décocher tous</a>
             </div>
         </form>
