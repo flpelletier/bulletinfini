@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("/management/notes", "GestionNoteController@note")->name("note.manage");
     Route::get("/management/note/add/{id}", "GestionNoteController@add_note")->name("note.add");
     Route::get("/management/note/edit/{id}", "GestionNoteController@edit_note")->name("note.edit");
+    Route::get("/management/note/show/{id}", "GestionNoteController@show_note")->name("note_matiere.show");
     Route::post("/management/note/update", "GestionNoteController@update")->name("note.update");
     Route::post("/management/note/destroy", "GestionNoteController@destroy")->name("note.destroy");
     Route::post("/management/note/create", "GestionNoteController@create")->name("note.create");
