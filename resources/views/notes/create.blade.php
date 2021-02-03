@@ -67,7 +67,7 @@
                   <div class="form-group">
                     <select name="type" id="type->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                       <option value="" selected>Choisir un type</option>
-                      <option value="Continu">Continu</option>
+                      <option value="Continue">Continue</option>
                       <option value="Examen">Examen</option>
                     </select>
                   </div>
