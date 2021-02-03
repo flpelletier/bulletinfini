@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="./images/icon.ico">
-  <link rel="icon" type="image/png" href="./images/icon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{url('./images/icon.ico')}}">
+  <link rel="icon" type="image/png" href="{{url('./images/icon.ico')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     {{ __('Bulletinfini - Authentification') }}
@@ -60,9 +60,7 @@
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
           <div class="card-header text-center">
-              <div class="logo-container">
-                <img src="./images/icon.ico" alt>
-              </div>
+                <img src="./images/bulletinfini.png" alt>
             </div>
             @if(session()->has('errors'))
             <div class="alert alert-danger" role="alert">

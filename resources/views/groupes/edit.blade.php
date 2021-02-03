@@ -68,11 +68,12 @@
                                     <br />
                                     @endforeach
                                     @foreach($matiere as $matnew)
-                                    @if($groupe->matieres != $matiere )
-                                    <label>{{ Form::checkbox('matiere[]', $matnew->id, false, array('class' => 'matiere')) }} {{ $matnew->intitule }}</label>
+                                    <!-- @if( $groupe->matiere != $matiere)
+                                    <label>{{ Form::checkbox('matnew[]', $matnew->id, false, array('class' => 'matnew')) }} {{ $matnew->intitule }}</label>
                                     @endif
                                     <br />
                                     @endforeach
+                                    -->
                                 </div>
                             </div>
                         </div>
