@@ -57,9 +57,9 @@ class GestionNoteController extends Controller
     function update(Request $request)
     {
         $note = Note::Find($request->id_note);
-        $note->note = $request->note;
+        $note->note = $request->input("note");
         $note->update();
-        return $this . $this->index();
+        return $this->index();
     }
     function destroy(Request $request)
     {
