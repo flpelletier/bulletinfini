@@ -1,44 +1,90 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">Quick Example</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+    <div class="content">
+        <div class="container-fluid">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Promotion : {{$promotion->intitule}}</h1>
                         </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            @php($counter = 0)
+            @foreach($promotion->periodes as $periode)
+                <div class="container-fluid">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-calendar-alt"></i> {{$periode->nom}} </h3>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{route("bulletin.add" ,$periode->id)}}">
+                                <button class="btn btn-success">Générer les bulletins</button>
+                            </a>
+                            <div class="table-responsive">
+                                <table id="table_1{{$counter}}" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <center>
+                                                N°
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
+                                                Eleve
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
+                                                Bulletin
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
+                                                Date
+                                            </center>
+                                        </th>
+                                    </tr>
+                                    <tbody>
+                                    @foreach($promotion->eleves as $eleve)
+                                        <tr>
+                                            <td>
+                                                <center>
+                                                    {{ $eleve->id }}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {{strtoupper($eleve->nom) ." " .strtolower($eleve->prenom) }}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                        <div class="card-footer">
+                            Liste des eleves de la formation {{$promotion->intitule}}
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+                @php($counter++)
+            @endforeach
+        </div>
     </div>
 @endsection

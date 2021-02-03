@@ -281,8 +281,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 }
             });
+            $('#table_10').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('#table_11').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('#table_12').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('#table_13').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('#table_14').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('#table_15').DataTable({
+                dom: 'Bfrtip',
+                buttons: [],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
             $('#table_2').DataTable({
                 dom: 'Bfrtip',
+
                 buttons: [
                     'copy', 'excel', 'pdf'
                 ],
