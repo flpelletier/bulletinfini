@@ -22,5 +22,9 @@ class Eleve extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+    public function certification()
+    {
+        return $this->belongsTo(NotesCertification::class);
+    }
 
 }

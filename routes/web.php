@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('professeurs-deleteselection', 'ProfesseurController@deleteAll');
     Route::resource('/groupes', 'GroupeMatieresController');
     Route::delete('groupes-deleteselection', 'GroupeMatieresController@deleteAll');
+    Route::resource('/notescertification', 'NotesCertificationController');
+    Route::delete('notescertification-deleteselection', 'NotesCertificationController@deleteAll');
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");
