@@ -29,7 +29,7 @@
                                     ?>
                                     <span class="input-group-text">
 
-                          <input id="{{$counter}}" name="{{$eleve->id}}"   onchange="setview()" @if($testc == 0) disabled
+                          <input id="{{$counter}}" name="{{$eleve->id}}" onchange="setview()" @if($testc == 0) disabled
                                  title="aucune note pour {{$eleve->prenom}}"
                                  style="background-color: rgb(153, 153, 153)" @else style="color : black;"
                                  @endif type="checkbox">
@@ -39,28 +39,41 @@
                                        @if($testc == 0)  style="background-color: rgb(153, 153, 153)" @endif
                                        value="{{strtoupper($eleve->nom) ." " .strtolower($eleve->prenom)}} @if($testc == 0) (Aucune note saisie) @endif">
                             </div>
-
-                            <div id="remarque_{{$counter}}" class="container" style="display: none">
-                                <div class="row">
-                                    @foreach($periode->promotion->matieres as $matiere)
-                                        @php($counterc = 0 )
-                                        @foreach($eleve->notes as $note)
-                                            @if($note->matiere->id == $matiere->id)
-                                                @if($counterc == 0)
-                                                    <div class="col-sm">
-                                                        <div class="form-group">
-                                                            <div>
-                                                                <label>{{$matiere->intitule}}</label>
-                                                                <input type="text" class="form-control"
-                                                                       placeholder="Remarque">
+                            <div id="remarque_{{$counter}}" style="display: none">
+                                <div class="container">
+                                    <div class="row">
+                                        @foreach($periode->promotion->matieres as $matiere)
+                                            @php($counterc = 0 )
+                                            @foreach($eleve->notes as $note)
+                                                @if($note->matiere->id == $matiere->id)
+                                                    @if($counterc == 0)
+                                                        <div class="col-sm">
+                                                            <div class="form-group">
+                                                                <div>
+                                                                    <label>{{$matiere->intitule}}</label>
+                                                                    <input name="r_{{$eleve->id}}_{{$matiere->id}}"
+                                                                           type="text" class="form-control"
+                                                                           maxlength="50" placeholder="Remarque">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @php($counterc++)
+                                                        @php($counterc++)
+                                                    @endif
                                                 @endif
-                                            @endif
+                                            @endforeach
                                         @endforeach
-                                    @endforeach
+                                            <div class="w-100"></div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label>Appréciation</label>
+                                                        <input name="appr_{{$eleve->id}}"
+                                                               type="text" class="form-control"
+                                                               maxlength="150" placeholder="Remarque">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,17 +103,19 @@
 
             }
         }
-function setview(){
-    var number = <?php echo json_encode($counter);?>;
-    for (var i = 0; i < number; i++) {
-        var n = i + 1 ;
-        if(document.getElementById(i+ 1).checked == true){
-            document.getElementById("remarque_"+ n ).style.display = "flex";
-        }else {
-            document.getElementById("remarque_"+ n ).style.display = "none";
+
+        function setview() {
+            var number = <?php echo json_encode($counter);?>;
+            for (var i = 0; i < number; i++) {
+                var n = i + 1;
+                if (document.getElementById(i + 1).checked == true) {
+                    document.getElementById("remarque_" + n).style.display = "flex";
+                } else {
+                    document.getElementById("remarque_" + n).style.display = "none";
+                }
+            }
         }
-    }
-}
+
         function unselectall() {
             var number = <?php echo json_encode($counter);?>;
             for (var i = 0; i < number; i++) {

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <form method="post" action="{{route("note.manage")}}">
                 @csrf
-                <div class="form-group">
+                <div class="form-group" >
                     <label> Selectionner une promotion : </label>
                     <select class="custom-select form-control-border" name="selector">
                         @foreach($promotions as $promo)

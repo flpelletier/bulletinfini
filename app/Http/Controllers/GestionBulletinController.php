@@ -73,13 +73,14 @@ class GestionBulletinController extends Controller
                                 if ($numberc != 0) {
                                     $moyenne->continue = $totalc / $numberc;
                                 }
-
+                                $moyenne->remarque = $request->input("r_" . $eleve->id . "_" . $matiere->id);
                                 $moyenne->periode_id = $periode->id;
                                 $moyenne->eleve_id = $eleve->id;
                                 $moyenne->matiere_id = $matiere->id;
                                 $moyenne->save();
 
                             } else {
+                                $d[0]->remarque = $request->input("r_" . $eleve->id . "_" . $matiere->id);
                                 $d[0]->note = $total / $number;
                                 $d[0]->save();
                             }
@@ -130,15 +131,16 @@ class GestionBulletinController extends Controller
                 if ($eleve->notes->count() != 0) {
                     $html2pdf = new Html2Pdf();
                     $html2pdf->writeHTML($this->gethtml($eleve, $periode));
-                    $pdf_name =  $this->randomstr(20) . '.pdf';
-                    $pdf_path =  $_SERVER['DOCUMENT_ROOT'] . '/pdf/' .$pdf_name;
+                    $pdf_name = $this->randomstr(20) . '.pdf';
+                    $pdf_path = $_SERVER['DOCUMENT_ROOT'] . '/pdf/' . $pdf_name;
                     $html2pdf->Output($pdf_path, 'F');
                     if (Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get()->count() > 0) {
 
                         $bt = Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get();
                         unlink($bt[0]->path);
                         $bt[0]->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
-                        $bt[0]->path = 'pdf/' .$pdf_name;
+                        $bt[0]->path = 'pdf/' . $pdf_name;
+                        $bt[0]->appreciation = $request->input("appr_" . $eleve->id);
                         $bt[0]->date = date("Y-m-d H:i:s");
                         $bt[0]->eleve_id = $eleve->id;
                         $bt[0]->periode_id = $periode->id;
@@ -147,7 +149,8 @@ class GestionBulletinController extends Controller
 
                         $bt = new Bulletin;
                         $bt->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
-                        $bt->path = 'pdf/' .$pdf_name;
+                        $bt->path = 'pdf/' . $pdf_name;
+                        $bt->appreciation = $request->input("appr_" . $eleve->id);
                         $bt->date = date("Y-m-d H:i:s");
                         $bt->eleve_id = $eleve->id;
                         $bt->periode_id = $periode->id;
@@ -157,7 +160,7 @@ class GestionBulletinController extends Controller
             }
         }
 
-    return $this->index();
+        return $this->index();
     }
 
     function randomstr($length)

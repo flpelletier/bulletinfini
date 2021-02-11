@@ -9,7 +9,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Gestion des notes {{$promotion->intitule}}</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="overflow: auto">
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6"></div>
