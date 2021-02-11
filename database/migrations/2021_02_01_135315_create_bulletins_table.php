@@ -18,6 +18,7 @@ class CreateBulletinsTable extends Migration
             $table->string("nom");
             $table->string("path");
             $table->string("date");
+            $table->string("appreciation")->nullable();
             $table->bigInteger("eleve_id")->unsigned();
             $table->bigInteger("periode_id")->unsigned();
             $table->timestamps();
