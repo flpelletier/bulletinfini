@@ -21,6 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-html5-1.6.5/b-print-1.6.5/r-2.2.6/sb-1.0.1/datatables.min.css" />
 
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -38,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
             </ul>
 
-          
+
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -355,21 +356,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $(".sub_chk").prop('checked', false);
                 }
             });
-            $('#master1').on('click', function(e) {
-                if ($(this).is(':checked', true)) {
-                    $(".sub_chk1").prop('checked', true);
-                } else {
-                    $(".sub_chk1").prop('checked', false);
-                }
-            });
             $('.delete_all').on('click', function(e) {
 
 
                 var allVals = [];
                 $(".sub_chk:checked").each(function() {
-                    allVals.push($(this).attr('data-id'));
-                });
-                $(".sub_chk1:checked").each(function() {
                     allVals.push($(this).attr('data-id'));
                 });
 
@@ -392,6 +383,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: 'ids=' + join_selected_values,
+
                             success: function(data) {
                                 if (data['success']) {
                                     $(".sub_chk:checked").each(function() {
@@ -406,21 +398,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             },
                             error: function(data) {
                                 alert(data.responseText);
-                            },
-                            success: function(data1) {
-                                if (data1['success']) {
-                                    $(".sub_chk1:checked").each(function() {
-                                        $(this).parents("tr").remove();
-                                    });
-                                    alert(data1['success']);
-                                } else if (data1['error']) {
-                                    alert(data1['error']);
-                                } else {
-                                    alert('Whoops...Quelque chose s\'est mal passé!!');
-                                }
-                            },
-                            error: function(data1) {
-                                alert(data1.responseText);
                             }
                         });
 
@@ -460,28 +437,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         } else {
                             alert('Whoops...Quelque chose s\'est mal passé!!');
                         }
-                    },
-                    error: function(data1) {
-                        alert(data1.responseText);
-                    },
-                    success: function(data1) {
-                        if (data1['success']) {
-                            $("#" + data1['tr']).slideUp("slow");
-                            alert(data1['success']);
-                        } else if (data1['error']) {
-                            alert(data1['error']);
-                        } else {
-                            alert('Whoops...Quelque chose s\'est mal passé!!');
-                        }
-                    },
-                    error: function(data1) {
-                        alert(data1.responseText);
                     }
                 });
                 return false;
             });
         });
-  
     </script>
 </body>
 
