@@ -49,26 +49,28 @@
                                         </th>
                                     </tr>
                                     <tbody>
-                                    @foreach($promotion->eleves as $eleve)
+                                    @foreach($periode->bulletins  as $bulletin )
                                         <tr>
                                             <td>
                                                 <center>
-                                                    {{ $eleve->id }}
+                                                    {{ $bulletin->id }}
                                                 </center>
                                             </td>
                                             <td>
                                                 <center>
-                                                    {{strtoupper($eleve->nom) ." " .strtolower($eleve->prenom) }}
+                                                    {{strtoupper($bulletin->eleve->nom) ." " .strtolower($bulletin->eleve->prenom) }}
                                                 </center>
                                             </td>
                                             <td>
                                                 <center>
-
+                                                    <a href="{{url($bulletin->path)}}" target="_blank">
+                                                        <img style="width : 30px" src="{{url('images/pdficon.png')}}">
+                                                    </a>
                                                 </center>
                                             </td>
                                             <td>
                                                 <center>
-
+                                                    {{$bulletin->date}}
                                                 </center>
                                             </td>
                                         </tr>
