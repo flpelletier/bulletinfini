@@ -7,12 +7,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Matière n°{{$matiere->id}}</h4>
+                        <h4 class="card-title ">Groupe n°{{$matiere->id}}</h4>
                     </div>
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12 ">
-                                <a href="{{ route('matieres.index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
+                                <a href="{{ route('groupes.index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
                             </div>
                         </div>
                         <!-- Nom -->
@@ -44,12 +44,14 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Nom</th>
+                                                        <th>Promotion</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach($matiere->matieres as $mat)
                                                     <tr>
                                                         <td>{{ $mat->intitule }}</td>
+                                                        <td>{{ $mat->promotion->intitule }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

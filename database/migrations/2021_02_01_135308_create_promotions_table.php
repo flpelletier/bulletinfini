@@ -18,6 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->string("intitule");
             $table->string("nom_complet");
             $table->string("description");
+            $table->string("coordonnees");
             $table->string("annee");
             $table->timestamps();
         });

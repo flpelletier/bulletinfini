@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Promotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PromotionsController extends Controller
 {
@@ -32,6 +33,9 @@ class PromotionsController extends Controller
 
         $promotion->intitule = $request->get('intitule');
         $promotion->annee = $request->get('annee');
+        $promotion->nom_complet = $request->get('nom');
+        $promotion->description = $request->get('description');
+        $promotion->coordonnees = $request->get('coordonnees');
         $promotion->updated_at = now();
         $promotion->save();
 
@@ -43,6 +47,9 @@ class PromotionsController extends Controller
 
         $promotion->intitule = $request->get('intitule');
         $promotion->annee = $request->get('annee');
+        $promotion->nom_complet = $request->get('nom');
+        $promotion->description = $request->get('description');
+        $promotion->coordonnees = $request->get('coordonnees');
         $promotion->updated_at = now();
         $promotion->save();
 
@@ -54,5 +61,11 @@ class PromotionsController extends Controller
 
         $promotion->delete();
         return redirect()->route('promotions.index')->withStatus(__('Promotion supprimée avec succès'));
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("promotions")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Promotion(s) supprimé(s) avec succès."]);
     }
 }

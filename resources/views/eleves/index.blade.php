@@ -32,7 +32,7 @@
                   Ajouter un élève
                 </button>
               </a>
-              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('eleve-deleteselection') }}">
+              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('eleves-deleteselection') }}">
                 Supprimer la séléction
               </button>
             </div>

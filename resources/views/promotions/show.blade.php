@@ -30,8 +30,38 @@
                             <label class="col-sm-2 col-form-label">{{ __('Année') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="nom" id="nom" type="texte" style="background-color : #ececec;">{{ $promotion->annee }}</div>
+                                    <div class="form-control" name="annee" id="annee" type="texte" style="background-color : #ececec;">{{ $promotion->annee }}</div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Année -->
+                        <!-- Année -->
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Nom complet') }}</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <div class="form-control" name="nom_complet" id="nom_complet" type="texte" style="background-color : #ececec;">{{ $promotion->nom_complet }}</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Année -->
+                        <!-- Année -->
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <div class="form-control" name="description" id="description" type="texte" style="background-color : #ececec;">{{ $promotion->description }}</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Coordonnées') }}</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <div class="form-control" name="coordonnees" id="coordonnees" type="texte" style="background-color : #ececec;height:100px;">{{ $promotion->coordonnees }}</div>
                                 </div>
                             </div>
                         </div>

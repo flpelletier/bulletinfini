@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="apple-touch-icon" sizes="76x76" href="{{url('./images/icon.ico')}}">
-  <link rel="icon" type="image/png" href="{{url('./images/icon.ico')}}">
+    <link rel="icon" type="image/png" href="{{url('./images/icon.ico')}}">
     <title>Bulletinfini | Administration</title>
 
     <!-- Font Awesome Icons -->
@@ -350,7 +350,140 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 }
             });
+            $('#master').on('click', function(e) {
+                if ($(this).is(':checked', true)) {
+                    $(".sub_chk").prop('checked', true);
+                } else {
+                    $(".sub_chk").prop('checked', false);
+                }
+            });
+            $('#master1').on('click', function(e) {
+                if ($(this).is(':checked', true)) {
+                    $(".sub_chk1").prop('checked', true);
+                } else {
+                    $(".sub_chk1").prop('checked', false);
+                }
+            });
+            $('.delete_all').on('click', function(e) {
+
+
+                var allVals = [];
+                $(".sub_chk:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
+                $(".sub_chk1:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
+
+                if (allVals.length <= 0) {
+                    alert("Veuillez séléctionner au moins une ligne.");
+                } else {
+
+
+                    var check = confirm("Etes vous sur de vouloir supprimer ces lignes?");
+                    if (check == true) {
+
+
+                        var join_selected_values = allVals.join(",");
+
+
+                        $.ajax({
+                            url: $(this).data('url'),
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: 'ids=' + join_selected_values,
+                            success: function(data) {
+                                if (data['success']) {
+                                    $(".sub_chk:checked").each(function() {
+                                        $(this).parents("tr").remove();
+                                    });
+                                    alert(data['success']);
+                                } else if (data['error']) {
+                                    alert(data['error']);
+                                } else {
+                                    alert('Whoops...Quelque chose s\'est mal passé!!');
+                                }
+                            },
+                            error: function(data) {
+                                alert(data.responseText);
+                            },
+                            success: function(data1) {
+                                if (data1['success']) {
+                                    $(".sub_chk1:checked").each(function() {
+                                        $(this).parents("tr").remove();
+                                    });
+                                    alert(data1['success']);
+                                } else if (data1['error']) {
+                                    alert(data1['error']);
+                                } else {
+                                    alert('Whoops...Quelque chose s\'est mal passé!!');
+                                }
+                            },
+                            error: function(data1) {
+                                alert(data1.responseText);
+                            }
+                        });
+
+                        $.each(allVals, function(index, value) {
+                            $('table tr').filter("[data-row-id='" + value + "']").remove();
+                        });
+                    }
+                }
+            });
+
+
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                onConfirm: function(event, element) {
+                    element.trigger('confirm');
+                }
+            });
+
+
+            $(document).on('confirm', function(e) {
+                var ele = e.target;
+                e.preventDefault();
+
+
+                $.ajax({
+                    url: ele.href,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        if (data['success']) {
+                            $("#" + data['tr']).slideUp("slow");
+                            alert(data['success']);
+                        } else if (data['error']) {
+                            alert(data['error']);
+                        } else {
+                            alert('Whoops...Quelque chose s\'est mal passé!!');
+                        }
+                    },
+                    error: function(data1) {
+                        alert(data1.responseText);
+                    },
+                    success: function(data1) {
+                        if (data1['success']) {
+                            $("#" + data1['tr']).slideUp("slow");
+                            alert(data1['success']);
+                        } else if (data1['error']) {
+                            alert(data1['error']);
+                        } else {
+                            alert('Whoops...Quelque chose s\'est mal passé!!');
+                        }
+                    },
+                    error: function(data1) {
+                        alert(data1.responseText);
+                    }
+                });
+                return false;
+            });
         });
+  
     </script>
 </body>
 

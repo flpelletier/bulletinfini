@@ -6,6 +6,8 @@ use App\Periode;
 use App\Promotion;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
+
 class PeriodeController extends Controller
 {
     public function index()
@@ -87,5 +89,11 @@ class PeriodeController extends Controller
         $periode->delete();
 
         return redirect()->route("periodes.index")->with('error', 'Période supprimée avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("periodes")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Période(s) supprimée(s) avec succès."]);
     }
 }

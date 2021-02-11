@@ -199,10 +199,14 @@ class MatieresSeeder extends Seeder
             'prof_id' => "10",
             'created_at' => now()
         ]);
-
-
-         /* Réseau */
-         DB::table('matieres')->insert([
+        /* 
+*
+*
+*
+*
+*/
+        /* Réseau */
+        DB::table('matieres')->insert([
             'intitule' => 'Administration réseau',
             'coefficient' => "1",
             'groupe_matiere_id' => "1",

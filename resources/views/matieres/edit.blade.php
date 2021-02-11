@@ -53,7 +53,7 @@
                                 <label class="col-sm-2 col-form-label">Coefficient :</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('coefficient') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="text" placeholder="Coefficient" value="{{$matiere->coefficient}}" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="number" placeholder="Coefficient" value="{{$matiere->coefficient}}" required="true" aria-required="true" />
                                         @if ($errors->has('coefficient'))
                                         <span id="description-error" class="error text-danger" for="input-coefficient">{{ $errors->first('coefficient') }}</span>
                                         @endif

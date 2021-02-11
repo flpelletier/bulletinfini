@@ -32,7 +32,7 @@
                   Ajouter un groupe
                 </button>
               </a>
-              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('groupe-deleteselection') }}">
+              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('groupes-deleteselection') }}">
                 Supprimer la séléction
               </button>
             </div>

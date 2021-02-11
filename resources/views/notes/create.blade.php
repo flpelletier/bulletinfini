@@ -28,7 +28,7 @@
                 <label for="nom" class="col-sm-2 col-form-label">{{ __('Note') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <input type="text" class="form-control{{ $errors->has('note') ? ' is-invalid' : '' }}" id="note" name="note" placeholder="Entrer la note" value="{{ old('note') }}">
+                    <input  class="form-control{{ $errors->has('note') ? ' is-invalid' : '' }}" type="number" id="note" name="note" placeholder="Entrer la note" value="{{ old('note') }}">
                     @if ($errors->has('notenote'))
                     <span id="nom-error" class="error text-danger" for="input-note">{{ $errors->first('note') }}</span>
                     @endif
@@ -54,7 +54,7 @@
                 <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('coefficient') ? ' has-danger' : '' }}">
-                    <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="text" placeholder="Coefficient" value="{{ old('coefficient') }}" required="true" aria-required="true" />
+                    <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="number" placeholder="Coefficient" value="{{ old('coefficient') }}" required="true" aria-required="true" />
                     @if ($errors->has('coefficient'))
                     <span id="description-error" class="error text-danger" for="input-coefficient">{{ $errors->first('coefficient') }}</span>
                     @endif

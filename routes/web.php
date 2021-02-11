@@ -22,13 +22,21 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/eleves', 'ElevesController');
+    Route::delete('eleves-deleteselection', 'ElevesController@deleteAll');
     Route::resource('/users', 'UsersController');
+    Route::delete('users-deleteselection', 'UserController@deleteAll');
     Route::resource('/notes', 'NotesController');
+    Route::delete('notes-deleteselection', 'NotesController@deleteAll');
     Route::resource('/matieres', 'MatieresController');
+    Route::delete('matieres-deleteselection', 'MatieresController@deleteAll');
     Route::resource('/promotions', 'PromotionsController');
+    Route::delete('promotions-deleteselection', 'PromotionsController@deleteAll');
     Route::resource('/periodes', 'PeriodeController');
+    Route::delete('periodes-deleteselection', 'PeriodeController@deleteAll');
     Route::resource('/professeurs', 'ProfesseurController');
+    Route::delete('professeurs-deleteselection', 'ProfesseurController@deleteAll');
     Route::resource('/groupes', 'GroupeMatieresController');
+    Route::delete('groupes-deleteselection', 'GroupeMatieresController@deleteAll');
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");

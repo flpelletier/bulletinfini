@@ -67,9 +67,9 @@
                                     <div class="form-group">
                                         <select name="genre" id="genre->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                             <option value="{{$professeur->genre}}" selected>{{$professeur->genre}}</option>
-                                            @if($professeur->genre != "Femme")
+                                            @if($professeur->genre != "femme")
                                             <option value="Femme">Femme</option>
-                                            @elseif($professeur->genre != "Homme")
+                                            @elseif($professeur->genre != "homme")
                                             <option value="Homme">Homme</option>
                                             @endif
                                         </select>

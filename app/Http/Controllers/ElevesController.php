@@ -6,6 +6,7 @@ use App\Eleve;
 use App\Promotion;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class ElevesController extends Controller
 {
@@ -82,5 +83,11 @@ class ElevesController extends Controller
         $eleve->delete();
 
         return redirect()->route("eleves.index")->with('error', 'Elève supprimé avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("eleves")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Elève(s) supprimé(s) avec succès."]);
     }
 }

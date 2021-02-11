@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Prof;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
+
 class ProfesseurController extends Controller
 {
     public function index()
@@ -48,7 +50,7 @@ class ProfesseurController extends Controller
 
         $professeur->save();
 
-        return redirect()->route("professeurs.index")->with('success', 'Professeur créée !');
+        return redirect()->route("professeurs.index")->with('success', 'Professeur créé !');
     }
     public function update(Request $request, $id)
     {
@@ -70,7 +72,7 @@ class ProfesseurController extends Controller
         $professeur->save();
 
 
-        return redirect()->route("professeurs.index")->with('success', 'Professeur mise à jour !');
+        return redirect()->route("professeurs.index")->with('success', 'Professeur mis à jour !');
     }
     public function destroy($id)
     {
@@ -79,5 +81,11 @@ class ProfesseurController extends Controller
         $professeur->delete();
 
         return redirect()->route("professeurs.index")->with('error', 'Professeur supprimé avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("profs")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Professeur(s) supprimé(s) avec succès."]);
     }
 }

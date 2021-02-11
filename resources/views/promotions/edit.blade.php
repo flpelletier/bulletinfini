@@ -60,6 +60,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Nom de la formation :</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('nom') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}" name="nom" id="input-nom" type="text" placeholder="Administrateur de Systèmes d'information" value="{{$promotion->nom_complet}}" required="true" aria-required="true" />
+                                        @if ($errors->has('nom'))
+                                        <span id="nom-error" class="error text-danger" for="input-nom">{{ $errors->first('nom') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Description :</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-description" type="text" placeholder="TITRE RNCP de Niveau Il - N° de certification 26E32601 - Code NSF 326 n" value="{{$promotion->description}}" required="true" aria-required="true" />
+                                        @if ($errors->has('description'))
+                                        <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Coordonnées :</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('coordonnees') ? ' has-danger' : '' }}">
+                                        <textarea class="form-control{{ $errors->has('coordonnees') ? ' is-invalid' : '' }}" name="coordonnees" id="input-coordonnees" type="text" placeholder="Lycée Pasteur Mont Roland, Enseignement Supérieur. 9, avenue Rockefeller BP 24 39107 Dole Cedex 03 84 79 75 00" required="true" aria-required="true" />
+                                        {{$promotion->coordonnees}}
+                                        </textarea>
+                                        @if ($errors->has('coordonnees'))
+                                        <span id="coordonnees-error" class="error text-danger" for="input-coordonnees">{{ $errors->first('coordonnees') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="ml-auto mr-auto text-center">
                                 <button type="submit" class="btn btn-success">Modifier</button>
                             </div>

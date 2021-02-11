@@ -26,7 +26,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Nom') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}" name="nom" id="input-nom" type="text" placeholder="ASI A1" value="" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}" name="nom" id="input-nom" type="text" placeholder="ASI 19-21 A1" value="" required="true" aria-required="true" />
                                         @if ($errors->has('nom'))
                                         <span id="nom-error" class="error text-danger" for="input-nom">{{ $errors->first('nom') }}</span>
                                         @endif

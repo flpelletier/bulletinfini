@@ -8,6 +8,7 @@ use App\Prof;
 use App\Promotion;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class MatieresController extends Controller
 {
@@ -98,5 +99,11 @@ class MatieresController extends Controller
         $matiere->delete();
 
         return redirect()->route("matieres.index")->with('error', 'Matière supprimés avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("matieres")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Matière(s) supprimé(s) avec succès."]);
     }
 }

@@ -9,6 +9,7 @@ use App\Periode;
 use App\Matiere;
 use App\Eleve;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class NotesController extends Controller
 {
@@ -105,5 +106,11 @@ class NotesController extends Controller
         $note->delete();
 
         return redirect()->route("notes.index")->with('error', 'Note supprimée avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("notes")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Note(s) supprimé(s) avec succès."]);
     }
 }

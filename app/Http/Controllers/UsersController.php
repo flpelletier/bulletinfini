@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -85,5 +86,11 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect()->route("users.index")->with('error', 'Utilisateur supprimé avec succès !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("users")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
     }
 }

@@ -6,6 +6,7 @@ use App\GroupeMatiere;
 use App\Matiere;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class GroupeMatieresController extends Controller
 {
@@ -33,7 +34,7 @@ class GroupeMatieresController extends Controller
     {
         $groupe = GroupeMatiere::find($id);
         $matiere = Matiere::all();
-        
+       // dd($groupe->matieres,$matiere);
         return view('groupes.edit', compact('matiere', 'groupe'));
     }
     public function store(Request $request)

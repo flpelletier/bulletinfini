@@ -53,7 +53,7 @@
                                 <label class="col-sm-2 col-form-label">Coefficient :</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('coefficient') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="text" placeholder="Coefficient" value="{{$groupe->coefficient}}" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="number" placeholder="Coefficient" value="{{$groupe->coefficient}}" required="true" aria-required="true" />
                                         @if ($errors->has('coefficient'))
                                         <span id="description-error" class="error text-danger" for="input-coefficient">{{ $errors->first('coefficient') }}</span>
                                         @endif
@@ -64,16 +64,17 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Matières') }}</label>
                                 <div class="form-group">
                                     @foreach($groupe->matieres as $mat)
-                                    <label>{{ Form::checkbox('mat[]', $mat->id, $mat->intitule ? true : false, array('class' => 'intitule'))}} {{ $mat->intitule }}</label>
+                                    <label>{{ Form::checkbox('mat[]', $mat->id, $mat->intitule ? true : false, array('class' => 'intitule'))}} {{ $mat->promotion->intitule }} : {{ $mat->intitule }}</label>
                                     <br />
                                     @endforeach
                                     @foreach($matiere as $matnew)
-                                    <!-- @if( $groupe->matiere != $matiere)
-                                    <label>{{ Form::checkbox('matnew[]', $matnew->id, false, array('class' => 'matnew')) }} {{ $matnew->intitule }}</label>
+
+                                    @if($matnew->groupe_matiere_id != $groupe->id)
+                                    <label>{{ Form::checkbox('matnew[]', $matnew->id, false, array('class' => 'matnew')) }} {{ $mat->promotion->intitule }} : {{ $matnew->intitule }}</label>
                                     @endif
                                     <br />
                                     @endforeach
-                                    -->
+
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@
                   Ajouter une matière
                 </button>
               </a>
-              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('matiere-deleteselection') }}">
+              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('matieres-deleteselection') }}">
                 Supprimer la séléction
               </button>
             </div>
