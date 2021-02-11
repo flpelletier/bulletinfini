@@ -38,17 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
             </ul>
 
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+          
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -96,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <a href="{{route('promo.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                <i class="nav-icon fas fa fa-briefcase"></i>
                                 <p>
                                     Gestion Promotion
                                 </p>
@@ -104,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('note.index')}}" class="nav-link">
-                                <i class="nav-icon  fas fa-chalkboard-teacher"></i>
+                                <i class="nav-icon  fas fa fa-calculator"></i>
                                 <p>
                                     Gestion Note
                                 </p>
@@ -112,9 +102,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('bulletin.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                <i class="nav-icon fas fa fa-print"></i>
                                 <p>
                                     Gestion Bulletin
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('certification.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa fa-trophy"></i>
+                                <p>
+                                    Gestion Certification
                                 </p>
                             </a>
                         </li>

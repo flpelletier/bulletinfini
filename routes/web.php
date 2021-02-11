@@ -52,6 +52,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("/management/bulletin", "GestionBulletinController@bulletin")->name("bulletin.manage");
     Route::get("/management/bulletin/add/{id}", "GestionBulletinController@add_bulletin")->name("bulletin.add");
     Route::post("/management/bulletin/create", "GestionBulletinController@create")->name("bulletin.create");
+
+    Route::get("/managementc", "GestionCertificationController@index")->name("certification.index");
+    Route::post("/management/certification", "GestionCertificationController@bulletin")->name("certification.manage");
+    Route::get("/management/certification/add/{id}", "GestionCertificationController@add_bulletin")->name("certification.add");
+    Route::post("/management/certification/create", "GestionCertificationController@create")->name("certification.create");
+
     //Route::get('/index', 'DashboardController@index')->name('index');
     Route::get('/', 'DashboardController@index')->name('index');
 
