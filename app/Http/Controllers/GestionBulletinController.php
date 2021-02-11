@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Bulletin;
 use App\Matiere;
 use App\MoyenneClasse;
 use Spipu\Html2Pdf\Html2Pdf;
@@ -11,6 +12,8 @@ use App\Periode;
 use App\Promotion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class GestionBulletinController extends Controller
 {
@@ -59,25 +62,30 @@ class GestionBulletinController extends Controller
                             }
                         }
                         $d = Moyenne::where("eleve_id", $eleve->id)->where("matiere_id", $matiere->id)->where("periode_id", $periode->id)->get();
-                        if ($d->count() == 0) {
-                            $moyenne = new Moyenne();
-                            $moyenne->note = $total / $number;
-                            if ($numbere != 0) {
-                                $moyenne->exam = $totale / $numbere;
-                            }
-                            if ($numberc != 0) {
-                                $moyenne->continue = $totalc / $numberc;
-                            }
+                        try {
+                            if ($d->count() == 0) {
 
-                            $moyenne->periode_id = $periode->id;
-                            $moyenne->eleve_id = $eleve->id;
-                            $moyenne->matiere_id = $matiere->id;
-                            $moyenne->save();
-                        } else {
-                            $d[0]->note = $total / $number;
-                            $d[0]->save();
+                                $moyenne = new Moyenne();
+                                $moyenne->note = $total / $number;
+                                if ($numbere != 0) {
+                                    $moyenne->exam = $totale / $numbere;
+                                }
+                                if ($numberc != 0) {
+                                    $moyenne->continue = $totalc / $numberc;
+                                }
+
+                                $moyenne->periode_id = $periode->id;
+                                $moyenne->eleve_id = $eleve->id;
+                                $moyenne->matiere_id = $matiere->id;
+                                $moyenne->save();
+
+                            } else {
+                                $d[0]->note = $total / $number;
+                                $d[0]->save();
+                            }
+                        } catch (\Exception $e) {
+                            echo $e;
                         }
-
                     }
 
                 }
@@ -119,13 +127,47 @@ class GestionBulletinController extends Controller
         }
         foreach ($periode->promotion->eleves as $eleve) {
             if ($request->input($eleve->id) != null) {
-                $html2pdf = new Html2Pdf();
-                $html2pdf->writeHTML($this->gethtml($eleve, $periode));
-                $html2pdf->output();
+                if ($eleve->notes->count() != 0) {
+                    $html2pdf = new Html2Pdf();
+                    $html2pdf->writeHTML($this->gethtml($eleve, $periode));
+                    $pdf_name =  $this->randomstr(20) . '.pdf';
+                    $pdf_path =  $_SERVER['DOCUMENT_ROOT'] . '/pdf/' .$pdf_name;
+                    $html2pdf->Output($pdf_path, 'F');
+                    if (Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get()->count() > 0) {
+
+                        $bt = Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get();
+                        unlink($bt[0]->path);
+                        $bt[0]->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
+                        $bt[0]->path = 'pdf/' .$pdf_name;
+                        $bt[0]->date = date("Y-m-d H:i:s");
+                        $bt[0]->eleve_id = $eleve->id;
+                        $bt[0]->periode_id = $periode->id;
+                        $bt[0]->save();
+                    } else {
+
+                        $bt = new Bulletin;
+                        $bt->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
+                        $bt->path = 'pdf/' .$pdf_name;
+                        $bt->date = date("Y-m-d H:i:s");
+                        $bt->eleve_id = $eleve->id;
+                        $bt->periode_id = $periode->id;
+                        $bt->save();
+                    }
+                }
             }
         }
 
+    return $this->index();
+    }
 
+    function randomstr($length)
+    {
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= $chars[rand(0, strlen($chars) - 1)];
+        }
+        return $string;
     }
 
     function gethtml($eleve, $periode)
@@ -259,7 +301,10 @@ class GestionBulletinController extends Controller
             }
         }
 
-        $html = $html . $total / $number . '</p>
+        $html = $html . $total / $number
+            .
+
+            '</p>
         </td>
         <td style="height: p24px;">
             <p>' . $totalc / $numberc . '</p>
@@ -272,7 +317,7 @@ class GestionBulletinController extends Controller
         $ls = Matiere::where("intitule", "Livret de suivi")->where("promotion_id", $periode->promotion->id)->get();
         if ($ls->count() == 1) {
             $moyls = $ls[0]->moyennes;
-            if(isset($ls[0]->moyenne_classes[0])){
+            if (isset($ls[0]->moyenne_classes[0])) {
                 $moylc = $ls[0]->moyenne_classes[0];
             }
 
@@ -302,13 +347,13 @@ class GestionBulletinController extends Controller
             <p></p>
         </td>
         <td style="height: p24px;">
-            <p>'.$mamls->note.'</p>
+            <p>' . $mamls->note . '</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$moylc->note.'</p>
+            <p>' . $moylc->note . '</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$mamls->remarque.'</p>
+            <p>' . $mamls->remarque . '</p>
         </td>
     </tr>
     <tr>
@@ -319,10 +364,10 @@ class GestionBulletinController extends Controller
             <p>Moyenne</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$mamls->note.'</p>
+            <p>' . $mamls->note . '</p>
         </td>
         <td style="height: p24px;">
-            <p>'.$moylc->note.'</p>
+            <p>' . $moylc->note . '</p>
         </td>
         <td style="height: p24px;">
             <p></p>
