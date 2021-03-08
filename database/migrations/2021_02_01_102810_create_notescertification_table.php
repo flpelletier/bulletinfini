@@ -15,10 +15,11 @@ class CreateNotescertificationTable extends Migration
     {
         Schema::create('notes_certifications', function (Blueprint $table) {
             $table->id();
-            $table->string("matiere");
+            $table->string("descritpion");
+            $table->integer("note");
             $table->integer("coefficient");
-            $table->enum('type', array ('entreprise', 'scolaire'))->default('scolaire');
-            $table->integer("note")->nullable();
+            $table->bigInteger("matiere_id")->unsigned();
+            $table->bigInteger("eleve_id")->unsigned();
             $table->timestamps();
         });
     }
