@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\GroupeMatiere;
 use App\Matiere;
+use App\MatieresCertification;
 use App\Note;
 use App\Eleve;
+use App\NotesCertification;
 use App\Promotion;
 use Illuminate\Http\Request;
 use Mockery\Matcher\Not;
@@ -18,7 +20,10 @@ class GestionNoteController extends Controller
     }
     function note(Request $request)
     {
-        return view("management.note.note")->with("promotion", Promotion::find($request->selector));
+
+        $promotion = Promotion::find($request->selector);
+        $certif_matiere = MatieresCertification::all();
+        return view("management.note.note",compact("promotion", "certif_matiere"));
     }
     function add_note($id)
     {
