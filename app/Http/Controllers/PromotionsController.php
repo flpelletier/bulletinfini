@@ -39,7 +39,7 @@ class PromotionsController extends Controller
         $promotion->updated_at = now();
         $promotion->save();
 
-        return redirect()->route('promotions.index')->withStatus(__('Promotion créée avec succès.'));
+        return redirect()->route('promo.index')->withStatus(__('Promotion créée avec succès.'));
     }
     public function update(Request $request, $id)
     {

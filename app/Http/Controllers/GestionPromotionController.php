@@ -14,4 +14,8 @@ class GestionPromotionController extends Controller
     function promo(Request $request){
         return view("management.promotion.promotion")->with("promotion", Promotion::find($request->selector));
     }
+    function promo_add(){
+        return view("management.promotion.add");
+
+    }
 }

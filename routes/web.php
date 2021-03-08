@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");
+    Route::get("/management/promotion/add", "GestionPromotionController@promo_add")->name("promo.add");
+
     Route::get("/managementn", "GestionNoteController@index")->name("note.index");
     Route::post("/management/notes", "GestionNoteController@note")->name("note.manage");
     Route::get("/management/note/add/{id}", "GestionNoteController@add_note")->name("note.add");

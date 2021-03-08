@@ -106,7 +106,7 @@
                     <!-- /.form group -->
                 </div>
                 <div class="card-footer">
-                    Liste des eleves de la formation {{$promotion->intitule}}
+                    Liste des périodes de la formation {{$promotion->intitule}}
                 </div>
             </div>
             <div class="card card-primary">
@@ -116,8 +116,15 @@
                 <a class="btn btn-primary" href="{{route('eleves.create')}}">
                     <button class="btn btn-primary">Ajouter un Eleve</button>
                 </a>
+
                 <div class="card-body">
                     <div class="table-responsive">
+                        @if($promotion->eleves->count() == 0)
+
+                        <a class="btn btn-primary" href="{{route('eleves.create')}}">
+                            <button class="btn btn-primary">Importer ma liste d'élèves</button>
+                        </a>
+                        @elseif($promotion->eleves->count() != 0)
                         <table id="table_2" class="table">
                             <thead>
                                 <tr>
@@ -142,7 +149,10 @@
                                         </center>
                                     </th>
                                 </tr>
+
+
                             <tbody>
+
                                 @foreach($promotion->eleves as $eleve)
 
                                 <tr>
@@ -185,7 +195,10 @@
 
                                 </tr>
                                 @endforeach
+
                             </tbody>
+                            @endif
+
                         </table>
                     </div>
                     <!-- /.form group -->
@@ -203,6 +216,12 @@
                 </a>
                 <div class="card-body">
                     <div class="table-responsive">
+                        @if($promotion->matieres->count() == 0)
+
+                        <a class="btn btn-primary" href="{{route('eleves.create')}}">
+                            <button class="btn btn-primary">Ajouter les matières</button>
+                        </a>
+                        @elseif($promotion->matieres->count() != 0)
                         <table id="table_3" class="table">
                             <thead>
                                 <tr>
@@ -284,11 +303,12 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @endif
                     </div>
                     <!-- /.form group -->
                 </div>
                 <div class="card-footer">
-                    Liste des matieres de la formation {{$promotion->intitule}}
+                    Liste des matières de la formation {{$promotion->intitule}}
                 </div>
             </div>
         </div>
