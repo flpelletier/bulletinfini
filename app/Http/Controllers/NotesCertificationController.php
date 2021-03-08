@@ -39,6 +39,7 @@ class NotesCertificationController extends Controller
         $validator = Validator::make($request->all(), [
             'coefficient' => 'required',
             'matiere' => 'required',
+            'type' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->route("notescertification.create")->withErrors($validator)->withInput();
@@ -48,7 +49,8 @@ class NotesCertificationController extends Controller
 
         $note->coefficient = $request->input('coefficient');
         $note->matiere = $request->input('matiere');
-      
+        $note->type = $request->input('type');
+
         $note->save();
 
         return redirect()->route("notescertification.index")->with('success', 'Matière créée !');
@@ -59,6 +61,7 @@ class NotesCertificationController extends Controller
         $validator = Validator::make($request->all(), [
             'coefficient' => 'required',
             'matiere' => 'required',
+            'type' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->route("notescertification.edit", $id)->withErrors($validator)->withInput();
@@ -66,6 +69,8 @@ class NotesCertificationController extends Controller
 
         $note->matiere = $request->input('matiere');
         $note->coefficient = $request->input('coefficient');
+        $note->type = $request->input('type');
+
         $note->updated_at = now();
 
         $note->save();

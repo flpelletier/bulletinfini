@@ -36,6 +36,18 @@
                 </div>
               </div>
               <!-- ./Description -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="type" id="type->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="" selected>Choisir un type</option>
+                      <option value="entreprise">Entreprise</option>
+                      <option value="scolaire">Scolaire</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
               <!-- Coefficient -->
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>

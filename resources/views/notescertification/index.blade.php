@@ -55,6 +55,11 @@
                                         </th>
                                         <th>
                                             <center>
+                                                Type
+                                            </center>
+                                        </th>
+                                        <th>
+                                            <center>
                                                 Coefficient
                                             </center>
                                       
@@ -73,8 +78,13 @@
                                                 {{ $note->id }}
                                             </center>
                                    
+                                        </td>
+                                      
                                         <td>
                                             {{ $note->matiere }}
+                                        </td>
+                                        <td>
+                                            {{ $note->type }}
                                         </td>
                                         <td>
                                             {{ $note->coefficient }}

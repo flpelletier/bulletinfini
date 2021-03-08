@@ -17,6 +17,7 @@ class CreateNotescertificationTable extends Migration
             $table->id();
             $table->string("matiere");
             $table->integer("coefficient");
+            $table->enum('type', array ('entreprise', 'scolaire'))->default('scolaire');
             $table->integer("note")->nullable();
             $table->timestamps();
         });

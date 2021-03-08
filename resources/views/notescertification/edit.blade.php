@@ -36,8 +36,8 @@
                 </div>
               </div>
               <br>
-        <!-- Description -->
-        <div class="row">
+              <!-- Description -->
+              <div class="row">
                 <label for="nom" class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">
@@ -49,6 +49,21 @@
                 </div>
               </div>
               <!-- ./Description -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="type" id="$note->type" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="{{$note->type}}" selected>{{$note->type}}</option>
+                      @if($note->type != 'entreprise')
+                      <option value="entreprise">Entreprise</option>
+                      @elseif($note->type != 'scolaire')
+                      <option value="scolaire">Scolaire</option> 
+                      @endif
+                    </select>
+                  </div>
+                </div>
+              </div>
               <!-- Coefficient -->
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>

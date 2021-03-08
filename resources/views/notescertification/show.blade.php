@@ -28,6 +28,14 @@
                             </div>
                         </div>
                         <!--  matière -->
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <div class="form-control" name="type" id="type" type="texte" style="background-color : #ececec;">{{ $note->type }}</div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Coefficient -->
                         <div class="row">
                             <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>

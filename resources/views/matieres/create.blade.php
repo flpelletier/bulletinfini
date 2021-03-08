@@ -55,7 +55,7 @@
                 <div class="col-sm-7">
                   <div class="form-group">
                     <select name="groupematiere" id="groupe_matiere_id->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                      <option value="" selected>Choisir un groupe de matière</option>
+                      <option value="" selected>Choisir un groupe de matière (facultatif)</option>
                       @foreach($groupes as $groupe)
                       <option value="{{$groupe->id}}">{{$groupe->intitule}}</option>
                       @endforeach
