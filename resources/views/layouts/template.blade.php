@@ -81,8 +81,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->surname }} {{ Auth::user()->name }}</a>
                 </div>
-<<<<<<< HEAD
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2 text-left ">
                     <ul class="nav nav-pills nav-sidebar   list-inline flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -230,8 +228,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
-=======
->>>>>>> main
             </div>
 
             <!-- Sidebar Menu -->
