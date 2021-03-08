@@ -207,7 +207,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- /.sidebar-menu -->
                 </div>
             <!-- /.sidebar -->
-            </div>
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
