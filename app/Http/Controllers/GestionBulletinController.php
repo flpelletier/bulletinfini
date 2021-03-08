@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Bulletin;
 use App\Matiere;
 use App\MoyenneClasse;
+use Illuminate\Support\Facades\Redirect;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Moyenne;
 use App\Periode;
@@ -160,7 +161,7 @@ class GestionBulletinController extends Controller
             }
         }
 
-        return $this->index();
+        return Redirect::back();
     }
 
     function randomstr($length)
