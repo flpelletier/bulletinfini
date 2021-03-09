@@ -24,10 +24,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/eleves', 'ElevesController');
     Route::delete('eleves-deleteselection', 'ElevesController@deleteAll');
     Route::resource('/users', 'UsersController');
-    Route::delete('users-deleteselection', 'UserController@deleteAll');
+    Route::delete('users-deleteselection', 'UsersController@deleteAll');
     Route::resource('/notes', 'NotesController');
     Route::delete('notes-deleteselection', 'NotesController@deleteAll');
     Route::resource('/matieres', 'MatieresController');
+    Route::get('/matieres-addm', 'MatieresController@add_multiple')->name("matieres.addmultiple");
+
     Route::delete('matieres-deleteselection', 'MatieresController@deleteAll');
     Route::resource('/promotions', 'PromotionsController');
     Route::delete('promotions-deleteselection', 'PromotionsController@deleteAll');

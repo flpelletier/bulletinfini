@@ -30,6 +30,13 @@ class MatieresController extends Controller
 
         return view('matieres.create', compact('groupes', 'promotions', 'professeurs'));
     }
+    public function add_multiple()
+    {
+        $promotions = Promotion::all();
+        $matieres = Matiere::all();
+
+        return view('matieres.add_multiple', compact('promotions','matieres'));
+    }
     public function edit($id)
     {
         $matiere = Matiere::find($id);

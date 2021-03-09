@@ -218,8 +218,8 @@
                     <div class="table-responsive">
                         @if($promotion->matieres->count() == 0)
 
-                        <a class="btn btn-primary" href="{{route('eleves.create')}}">
-                            <button class="btn btn-primary">Ajouter les matières</button>
+                        <a class="btn btn-primary" href="{{route('matieres.addmultiple')}}">
+                            <button class="btn btn-primary">Ajouter toutes les matières</button>
                         </a>
                         @elseif($promotion->matieres->count() != 0)
                         <table id="table_3" class="table">
