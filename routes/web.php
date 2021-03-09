@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/notes', 'NotesController');
     Route::delete('notes-deleteselection', 'NotesController@deleteAll');
     Route::resource('/matieres', 'MatieresController');
-    Route::get('/matieres-addm', 'MatieresController@add_multiple')->name("matieres.addmultiple");
+    Route::get('/management/addmultiple/', 'MatieresController@add_multiple')->name("matieres.addmultiple");
+    Route::post('/management/storemultiple', 'MatieresController@store_multiple')->name("matieres.storemultiple");
 
     Route::delete('matieres-deleteselection', 'MatieresController@deleteAll');
     Route::resource('/promotions', 'PromotionsController');
@@ -66,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Route::get('/index', 'DashboardController@index')->name('index');
     Route::get('/', 'DashboardController@index')->name('index');
+    Route::post("simple-excel/import", "ElevesController@import")->name('excel.import');
 
     //Route::get('/home', 'HomeController@index')->name('home');
     //Route::name('admin')->get('/', 'AdminController@index');

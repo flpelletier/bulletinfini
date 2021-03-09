@@ -7,6 +7,8 @@ use App\Promotion;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Spatie\SimpleExcel\SimpleExcelWriter;
+use Spatie\SimpleExcel\SimpleExcelReader;
 
 class ElevesController extends Controller
 {
@@ -89,5 +91,44 @@ class ElevesController extends Controller
         $ids = $request->ids;
         DB::table("eleves")->whereIn('id', explode(",", $ids))->delete();
         return response()->json(['success' => "Elève(s) supprimé(s) avec succès."]);
+    }
+    public function import(Request $request)
+    {
+
+        // 1. Validation du fichier uploadé. Extension ".xlsx" autorisée
+        $validator = Validator::make($request->all(), [
+            'fichier' => 'bail|required|file|mimes:xlsx'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route("promo.index")->withStatus(__("Fichier non valide, veuillez vérifier l'extention du fichier"));
+        }
+
+        // 2. On déplace le fichier uploadé vers le dossier "public" pour le lire
+        $fichier = $request->fichier->move(public_path(), $request->fichier->hashName());
+
+        // 3. $reader : L'instance Spatie\SimpleExcel\SimpleExcelReader
+        $reader = SimpleExcelReader::create($fichier);
+
+        // On récupère le contenu (les lignes) du fichier
+        $rows = $reader->getRows();
+
+        // $rows est une Illuminate\Support\LazyCollection
+
+        // 4. On insère toutes les lignes dans la base de données
+        $status = Eleve::insert($rows->toArray());
+
+        // Si toutes les lignes sont insérées
+        if ($status) {
+
+            // 5. On supprimer le fichier uploadé
+            $reader->close(); // On ferme le $reader
+            unlink($fichier);
+
+            // 6. Retour vers le formulaire avec un message $msg
+            return redirect()->route("promo.index")->withStatus(__("Importation réussie !"));
+
+        } else {
+            abort(500);
+        }
     }
 }

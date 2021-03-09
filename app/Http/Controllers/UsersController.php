@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
+
 class UsersController extends Controller
 {
     public function index()
@@ -93,4 +94,5 @@ class UsersController extends Controller
         DB::table("users")->whereIn('id', explode(",", $ids))->delete();
         return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
     }
+  
 }

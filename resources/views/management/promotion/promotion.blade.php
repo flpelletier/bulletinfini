@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+@include('alert')
 <div class="content">
     <div class="container-fluid">
         <section class="content-header">
@@ -120,10 +121,20 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         @if($promotion->eleves->count() == 0)
+                        <p>Sélectionnez un fichier Excel (.xlsx) pour importer les données dans la table "élèves".<br><strong>Les colonnes : </strong>nom, prenom, promotion_id</p>
 
-                        <a class="btn btn-primary" href="{{route('eleves.create')}}">
-                            <button class="btn btn-primary">Importer ma liste d'élèves</button>
-                        </a>
+                        <form method="POST" action="{{ route('excel.import') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            @method('post')
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="fichier" id="fichier">
+                                <label class="custom-file-label" for="fichier">Choisir un fichier</label>
+
+                            </div>
+                            <button class="btn btn-primary text-center">Importer</button>
+
+                        </form>
+
                         @elseif($promotion->eleves->count() != 0)
                         <table id="table_2" class="table">
                             <thead>
@@ -218,7 +229,7 @@
                     <div class="table-responsive">
                         @if($promotion->matieres->count() == 0)
 
-                        <a class="btn btn-primary" href="{{route('matieres.addmultiple')}}">
+                        <a class="btn btn-primary" href="{{route('matieres.addmultiple', $promotion->id)}}">
                             <button class="btn btn-primary">Ajouter toutes les matières</button>
                         </a>
                         @elseif($promotion->matieres->count() != 0)

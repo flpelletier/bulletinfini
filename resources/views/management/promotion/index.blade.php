@@ -1,8 +1,24 @@
 @extends('layouts.template')
 
 @section('content')
+@include('alert')
+
 <div class="content">
     <div class="container-fluid">
+    @if (session('status'))
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </button>
+                <span>{{ session('status') }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
         <form method="post" action="{{route("promo.manage")}}">
             @csrf
             <div class="form-group">
@@ -20,8 +36,8 @@
             </div>
         </form>
         <form method="get" action="{{route("promotions.create")}}">
-        <br>
-        <div class="form-row text-center">
+            <br>
+            <div class="form-row text-center">
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-success">Créer une nouvelle promotion</button>

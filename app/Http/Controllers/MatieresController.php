@@ -32,10 +32,16 @@ class MatieresController extends Controller
     }
     public function add_multiple()
     {
-        $promotions = Promotion::all();
-        $matieres = Matiere::all();
+        $promotion = DB::table('promotions')->latest('created_at')->first();
 
-        return view('matieres.add_multiple', compact('promotions','matieres'));
+        for ($i = 1; $i < 23; $i++) {
+            $replication = Matiere::find($i);
+            $newMatiere = $replication->replicate();
+            $newMatiere->promotion_id = $promotion->id; // the new promo_id
+            $newMatiere->save();
+        }
+
+        return redirect()->route("promo.index")->with('success', 'Matière créée !');
     }
     public function edit($id)
     {

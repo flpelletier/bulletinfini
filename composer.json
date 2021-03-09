@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.5",
         "laravelcollective/html": "^6.2",
+        "spatie/simple-excel": "^1.2",
         "spipu/html2pdf": "^5.2"
     },
     "require-dev": {
