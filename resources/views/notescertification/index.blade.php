@@ -89,7 +89,7 @@
                                             </center>
                                         </td>
                                         <td>
-                                            {{ $note->matiere }}
+                                            {{ $note->matiere_certif->matiere }}
                                         </td>
                                         <td>
                                             {{ $note->descritpion }}
@@ -117,7 +117,7 @@
                                                     <form action="{{route('notescertification.destroy', $note->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est-tu sur de vouloir supprimer cette matière ?')">
+                                                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est-tu sur de vouloir supprimer cette note ?')">
                                                             <i class="fas fa-times"></i>
                                                         </button>
                                                     </form>

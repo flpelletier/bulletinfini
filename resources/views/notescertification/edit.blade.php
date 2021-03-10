@@ -81,10 +81,10 @@
                 <div class="col-sm-7">
                   <div class="form-group">
                     <select name="matiere" id="matiere->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                      <option value="{{$note->matiere_id}}" selected>{{$note->matiere}}</option>
+                      <option value="{{$note->matiere_id}}" selected>{{$note->matiere_certif->matiere}}</option>
                       @foreach($matieres as $matiere)
                       @if($note->matiere_id != $matiere->id)
-                      <option value="{{$matiere->id}}">{{$matiere->intitule}}</option>
+                      <option value="{{$matiere->id}}">{{$matiere->matiere}}</option>
                       @endif
                       @endforeach
                     </select>

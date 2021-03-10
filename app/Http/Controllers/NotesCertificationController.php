@@ -71,16 +71,19 @@ class NotesCertificationController extends Controller
         $note = NotesCertification::find($id);
         $validator = Validator::make($request->all(), [
             'coefficient' => 'required',
+            'note' => 'required',
             'matiere' => 'required',
-            'type' => 'required',
+            'eleve' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->route("notescertification.edit", $id)->withErrors($validator)->withInput();
         }
 
-        $note->matiere = $request->input('matiere');
         $note->coefficient = $request->input('coefficient');
-        $note->type = $request->input('type');
+        $note->descritpion = $request->input('description');
+        $note->matiere_id = $request->input('matiere');
+        $note->note = $request->input('note');
+        $note->eleve_id = $request->input('eleve');
 
         $note->updated_at = now();
 
@@ -99,7 +102,7 @@ class NotesCertificationController extends Controller
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
-        DB::table("note_certifications")->whereIn('id', explode(",", $ids))->delete();
+        DB::table("notes_certifications")->whereIn('id', explode(",", $ids))->delete();
         return response()->json(['success' => "Note(s) supprimé(s) avec succès."]);
     }
 }

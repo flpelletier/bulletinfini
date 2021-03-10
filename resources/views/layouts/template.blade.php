@@ -77,143 +77,143 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="d-block">{{ Auth::user()->surname }} {{ Auth::user()->name }}</a>
                     </div>
                 </div>
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2 text-left ">
-                        <ul class="nav nav-pills nav-sidebar   list-inline flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 text-left ">
+                    <ul class="nav nav-pills nav-sidebar   list-inline flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
                        with font-awesome or any other icon font library -->
 
 
-                            <li class="nav-item">
-                                <a href="{{route('promo.index')}}" class="nav-link">
-                                    <i class="nav-icon fas fa fa-briefcase"></i>
-                                    <p>
-                                        Gestion Promotion
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('note.index')}}" class="nav-link">
-                                    <i class="nav-icon  fas fa fa-calculator"></i>
-                                    <p>
-                                        Gestion Note
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('bulletin.index')}}" class="nav-link">
-                                    <i class="nav-icon fas fa fa-print"></i>
-                                    <p>
-                                        Gestion Bulletin
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('certification.index')}}" class="nav-link">
-                                    <i class="nav-icon fas fa fa-trophy"></i>
-                                    <p>
-                                        Gestion Certification
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('users.index')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>
-                                        Gestion Utilisateurs
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item menu-open">
-                                <a href="#" class="nav-link ">
-                                    <i class=" nav-icon fas fa-database"></i>
-                                    <p>
-                                        Données
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview" style="display: block;">
-                                    <center>
-                                        <li class="nav-item">
-                                            <a href="{{route('promotions.index')}}" class="nav-link">
-                                                <i class=" nav-icon fas fa-school"></i>
-                                                <p>
-                                                    Promotions
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('eleves.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-user-graduate"></i>
-                                                <p>
-                                                    Elèves
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('groupes.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-book-open"></i>
-                                                <p>
-                                                    Groupes de matières
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('matieres.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-book-open"></i>
-                                                <p>
-                                                    Matières
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('matierescertification.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-marker"></i>
-                                                <p>
-                                                    Matière certification
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('notescertification.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-marker"></i>
-                                                <p>
-                                                    Notes certification
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('notes.index')}}" class="nav-link">
-                                                <i class="nav-icon fas fa-marker"></i>
-                                                <p>
-                                                    Notes
-                                                </p>
-                                            </a>
-                                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('promo.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa fa-briefcase"></i>
+                                <p>
+                                    Gestion Promotion
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('note.index')}}" class="nav-link">
+                                <i class="nav-icon  fas fa fa-calculator"></i>
+                                <p>
+                                    Gestion Note
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('bulletin.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa fa-print"></i>
+                                <p>
+                                    Gestion Bulletin
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('certification.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa fa-trophy"></i>
+                                <p>
+                                    Gestion Certification
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('users.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Gestion Utilisateurs
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link ">
+                                <i class=" nav-icon fas fa-database"></i>
+                                <p>
+                                    Données
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: block;">
+                                <center>
+                                    <li class="nav-item">
+                                        <a href="{{route('promotions.index')}}" class="nav-link">
+                                            <i class=" nav-icon fas fa-school"></i>
+                                            <p>
+                                                Promotions
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('eleves.index')}}" class="nav-link">
+                                            <i class="nav-icon fas fa-user-graduate"></i>
+                                            <p>
+                                                Elèves
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('groupes.index')}}" class="nav-link">
+                                            <i class="nav-icon fas fa-book-open"></i>
+                                            <p>
+                                                Groupes de matières
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('matieres.index')}}" class="nav-link">
+                                            <i class="nav-icon fas fa-book-open"></i>
+                                            <p>
+                                                Matières
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('matierescertification.index')}}" class="nav-link">
+                                            <i class="fas fa-book-reader"></i>
+                                            <p>
+                                                Matière certification
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('notescertification.index')}}" class="nav-link">
+                                            <i class="fas fa-highlighter"></i>
+                                            <p>
+                                                Notes certification
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('notes.index')}}" class="nav-link">
+                                            <i class="nav-icon fas fa-marker"></i>
+                                            <p>
+                                                Notes
+                                            </p>
+                                        </a>
+                                    </li>
 
-                                        <li class="nav-item">
-                                            <a href="{{route('periodes.index')}}" class="nav-link">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <p>
-                                                    Périodes
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('professeurs.index')}}" class="nav-link">
-                                                <i class="fas fa-chalkboard-teacher"></i>
-                                                <p>
-                                                    Professeurs
-                                                </p>
-                                            </a>
-                                        </li>
-                                    </center>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                </div>
+                                    <li class="nav-item">
+                                        <a href="{{route('periodes.index')}}" class="nav-link">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <p>
+                                                Périodes
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('professeurs.index')}}" class="nav-link">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                            <p>
+                                                Professeurs
+                                            </p>
+                                        </a>
+                                    </li>
+                                </center>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
             <!-- /.sidebar -->
         </aside>
 
