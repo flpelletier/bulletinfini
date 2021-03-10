@@ -8,6 +8,7 @@ use App\Prof;
 use App\Periode;
 use App\Matiere;
 use App\Eleve;
+use App\MatieresCertification;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,10 @@ class NotesCertificationController extends Controller
     }
     public function create()
     {
-        return view('notescertification.create');
+        $eleves = Eleve::all();
+        $matieres = MatieresCertification::all();
+
+        return view('notescertification.create', compact('eleves', 'matieres'));
     }
     public function show($id)
     {
@@ -30,16 +34,20 @@ class NotesCertificationController extends Controller
     public function edit($id)
     {
         $note = NotesCertification::find($id);
+        $eleves = Eleve::all();
+        $matieres = MatieresCertification::all();
 
-        return view('notescertification.edit', compact('note'));
+        return view('notescertification.edit', compact('note', 'eleves', 'matieres'));
     }
     public function store(Request $request)
     {
         //
         $validator = Validator::make($request->all(), [
             'coefficient' => 'required',
+            'note' => 'required',
             'matiere' => 'required',
-            'type' => 'required',
+            'eleve' => 'required',
+
         ]);
         if ($validator->fails()) {
             return redirect()->route("notescertification.create")->withErrors($validator)->withInput();
@@ -48,12 +56,15 @@ class NotesCertificationController extends Controller
         $note = new NotesCertification();
 
         $note->coefficient = $request->input('coefficient');
-        $note->matiere = $request->input('matiere');
-        $note->type = $request->input('type');
+        $note->descritpion = $request->input('description');
+        $note->matiere_id = $request->input('matiere');
+        $note->note = $request->input('note');
+        $note->eleve_id = $request->input('eleve');
+
 
         $note->save();
 
-        return redirect()->route("notescertification.index")->with('success', 'Matière créée !');
+        return redirect()->route("notescertification.index")->with('success', 'Note créée !');
     }
     public function update(Request $request, $id)
     {
@@ -75,7 +86,7 @@ class NotesCertificationController extends Controller
 
         $note->save();
 
-        return redirect()->route("notescertification.index")->with('success', 'Matière mise à jour !');
+        return redirect()->route("notescertification.index")->with('success', 'Note mise à jour !');
     }
     public function destroy($id)
     {
@@ -83,12 +94,12 @@ class NotesCertificationController extends Controller
 
         $note->delete();
 
-        return redirect()->route("notescertification.index")->with('error', 'Matière supprimée avec succès !');
+        return redirect()->route("notescertification.index")->with('error', 'Note supprimée avec succès !');
     }
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
-        DB::table("matiere_certifications")->whereIn('id', explode(",", $ids))->delete();
-        return response()->json(['success' => "Matière(s) supprimé(s) avec succès."]);
+        DB::table("note_certifications")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Note(s) supprimé(s) avec succès."]);
     }
 }

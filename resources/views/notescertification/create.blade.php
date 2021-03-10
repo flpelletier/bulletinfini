@@ -12,7 +12,7 @@
           @method('post')
           <div class="card ">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">{{ __('Ajouter une matière') }}</h4>
+              <h4 class="card-title">{{ __('Ajouter une note') }}</h4>
               <p class="card-category"></p>
             </div>
             <!-- Retour -->
@@ -25,26 +25,13 @@
               <br>
               <!-- Description -->
               <div class="row">
-                <label for="nom" class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
+                <label for="nom" class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <input type="text" class="form-control{{ $errors->has('matiere') ? ' is-invalid' : '' }}" id="matiere" name="matiere" placeholder="Entrer la matière" value="{{ old('description') }}">
-                    @if ($errors->has('matiere'))
-                    <span id="matiere-error" class="error text-danger" for="input-matiere">{{ $errors->first('matiere') }}</span>
+                    <input type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" name="description" placeholder="Entrer la description (facultatif)" value="{{ old('description') }}">
+                    @if ($errors->has('description'))
+                    <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
                     @endif
-                  </div>
-                </div>
-              </div>
-              <!-- ./Description -->
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <select name="type" id="type->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                      <option value="" selected>Choisir un type</option>
-                      <option value="entreprise">Entreprise</option>
-                      <option value="scolaire">Scolaire</option>
-                    </select>
                   </div>
                 </div>
               </div>
@@ -57,6 +44,47 @@
                     @if ($errors->has('coefficient'))
                     <span id="description-error" class="error text-danger" for="input-coefficient">{{ $errors->first('coefficient') }}</span>
                     @endif
+                  </div>
+                </div>
+              </div>
+              <!-- Note -->
+              <div class="row">
+                <label for="nom" class="col-sm-2 col-form-label">{{ __('Note') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <input class="form-control{{ $errors->has('note') ? ' is-invalid' : '' }}" type="number" id="note" name="note" placeholder="Entrer la note" value="{{ old('note') }}">
+                    @if ($errors->has('notenote'))
+                    <span id="nom-error" class="error text-danger" for="input-note">{{ $errors->first('note') }}</span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <!-- ./Note -->
+              <!-- Matière -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="matiere" id="matiere->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="" selected>Choisir une matière</option>
+                      @foreach($matieres as $matiere)
+                      <option value="{{$matiere->id}}">{{$matiere->matiere}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- Elève -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Élève') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="eleve" id="eleve->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="" selected>Choisir un élève</option>
+                      @foreach($eleves as $eleve)
+                      <option value="{{$eleve->id}}">[{{$eleve->promotion->intitule}}] {{$eleve->nom}} {{$eleve->prenom}}</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
               </div>

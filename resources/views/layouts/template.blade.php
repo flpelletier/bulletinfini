@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{route('notescertification.index')}}" class="nav-link">
+                                            <a href="{{route('matierescertification.index')}}" class="nav-link">
                                                 <i class="nav-icon fas fa-marker"></i>
                                                 <p>
                                                     Matière certification
@@ -175,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{route('certification.index')}}" class="nav-link">
+                                            <a href="{{route('notescertification.index')}}" class="nav-link">
                                                 <i class="nav-icon fas fa-marker"></i>
                                                 <p>
                                                     Notes certification

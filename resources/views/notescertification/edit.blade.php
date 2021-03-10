@@ -25,7 +25,7 @@
           @method('put')
           <div class="card ">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Modifier une matière</h4>
+              <h4 class="card-title">Modifier une note</h4>
               <p class="card-category"></p>
             </div>
             <!-- Retour -->
@@ -38,41 +38,73 @@
               <br>
               <!-- Description -->
               <div class="row">
-                <label for="nom" class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
+                <label for="nom" class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <input type="text" class="form-control{{ $errors->has('matiere') ? ' is-invalid' : '' }}" id="matiere" name="matiere" placeholder="Entrer la matière" value="{{$note->matiere }}">
-                    @if ($errors->has('matiere'))
-                    <span id="matiere-error" class="error text-danger" for="input-matiere">{{ $errors->first('matiere') }}</span>
+                    <input type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" name="description" placeholder="Entrer la description de la note" value="{{ $note->descritpion}}">
+                    @if ($errors->has('description'))
+                    <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
                     @endif
                   </div>
                 </div>
               </div>
               <!-- ./Description -->
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Type') }}</label>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <select name="type" id="$note->type" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
-                      <option value="{{$note->type}}" selected>{{$note->type}}</option>
-                      @if($note->type != 'entreprise')
-                      <option value="entreprise">Entreprise</option>
-                      @elseif($note->type != 'scolaire')
-                      <option value="scolaire">Scolaire</option> 
-                      @endif
-                    </select>
-                  </div>
-                </div>
-              </div>
+
               <!-- Coefficient -->
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Coefficient') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('coefficient') ? ' has-danger' : '' }}">
-                    <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="number" placeholder="Coefficient" value="{{$note->coefficient }}" required="true" aria-required="true" />
+                    <input class="form-control{{ $errors->has('coefficient') ? ' is-invalid' : '' }}" name="coefficient" id="input-coefficient" type="number" placeholder="Coefficient" value="{{ $note->coefficient}}" required="true" aria-required="true" />
                     @if ($errors->has('coefficient'))
                     <span id="description-error" class="error text-danger" for="input-coefficient">{{ $errors->first('coefficient') }}</span>
                     @endif
+                  </div>
+                </div>
+              </div>
+              <!-- Note -->
+              <div class="row">
+                <label for="nom" class="col-sm-2 col-form-label">{{ __('Note') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <input class="form-control{{ $errors->has('note') ? ' is-invalid' : '' }}" type="number" id="note" name="note" placeholder="Entrer la note" value="{{ $note->note }}">
+                    @if ($errors->has('notenote'))
+                    <span id="nom-error" class="error text-danger" for="input-note">{{ $errors->first('note') }}</span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <!-- ./Note -->
+              <!-- Matière -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="matiere" id="matiere->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="{{$note->matiere_id}}" selected>{{$note->matiere}}</option>
+                      @foreach($matieres as $matiere)
+                      @if($note->matiere_id != $matiere->id)
+                      <option value="{{$matiere->id}}">{{$matiere->intitule}}</option>
+                      @endif
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Elève -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Élève') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <select name="eleve" id="eleve->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
+                      <option value="{{$note->eleve_id}}" selected>{{$note->eleve->nom}} {{$note->eleve->prenom}}</option>
+                      @foreach($eleves as $eleve)
+                      @if($note->eleve_id != $eleve->id)
+                      <option value="{{$eleve->id}}">{{$eleve->nom}} {{$eleve->prenom}}</option>
+                      @endif
+                      @endforeach
+                    </select>
                   </div>
                 </div>
               </div>

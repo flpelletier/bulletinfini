@@ -28,7 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/notes', 'NotesController');
     Route::delete('notes-deleteselection', 'NotesController@deleteAll');
     Route::resource('/matieres', 'MatieresController');
-    Route::resource('/notes-certification', 'NotesCertificationData');
 
     Route::get('/management/addmultiple/', 'MatieresController@add_multiple')->name("matieres.addmultiple");
     Route::post('/management/storemultiple', 'MatieresController@store_multiple')->name("matieres.storemultiple");
@@ -44,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('groupes-deleteselection', 'GroupeMatieresController@deleteAll');
     Route::resource('/notescertification', 'NotesCertificationController');
     Route::delete('notescertification-deleteselection', 'NotesCertificationController@deleteAll');
+    Route::resource('/matierescertification', 'MatieresCertificationController');
+    Route::delete('matierescertification-deleteselection', 'MatieresCertificationController@deleteAll');
 
     Route::get("/managementp", "GestionPromotionController@index")->name("promo.index");
     Route::post("/management/promotion", "GestionPromotionController@promo")->name("promo.manage");
