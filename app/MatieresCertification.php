@@ -16,7 +16,7 @@ class MatieresCertification extends Model
     }
     public function moyenne_classes()
     {
-        return $this->hasMany(MoyenneClasseCertification::class);
+        return $this->hasMany(MoyenneClasseCertification::class , "matiere_id");
     }
 
 }

@@ -8,6 +8,7 @@ use App\Moyenne;
 use App\MoyenneCertification;
 use App\MoyenneClasse;
 use App\MoyenneClasseCertification;
+use App\Note;
 use Illuminate\Http\Request;
 use App\Promotion;
 use Spipu\Html2Pdf\Html2Pdf;
@@ -115,44 +116,63 @@ class GestionCertificationController extends Controller
             }
         }
 
+
         foreach ($promotion->eleves as $eleve) {
             if ($request->input($eleve->id) != null) {
                 dump($request->input($eleve->id));
                 if ($eleve->certif_notes->count() != 0) {
                     $html2pdf = new Html2Pdf();
-                    $html2pdf->writeHTML($this->gethtml());
+                    $html2pdf->writeHTML($this->gethtml($eleve, $promotion));
                     $pdf_name = $this->randomstr(20) . '.pdf';
                     $pdf_path = $_SERVER['DOCUMENT_ROOT'] . '/pdf/' . $pdf_name;
                     $html2pdf->Output($pdf_path, 'F');
                     dd("je suis la");
-                 /*   if (Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get()->count() > 0) {
+                    /*   if (Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get()->count() > 0) {
 
-                        $bt = Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get();
-                        unlink($bt[0]->path);
-                        $bt[0]->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
-                        $bt[0]->path = 'pdf/' . $pdf_name;
-                        $bt[0]->appreciation = $request->input("appr_" . $eleve->id);
-                        $bt[0]->date = date("Y-m-d H:i:s");
-                        $bt[0]->eleve_id = $eleve->id;
-                        $bt[0]->periode_id = $periode->id;
-                        $bt[0]->save();
-                    } else {
+                           $bt = Bulletin::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get();
+                           unlink($bt[0]->path);
+                           $bt[0]->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
+                           $bt[0]->path = 'pdf/' . $pdf_name;
+                           $bt[0]->appreciation = $request->input("appr_" . $eleve->id);
+                           $bt[0]->date = date("Y-m-d H:i:s");
+                           $bt[0]->eleve_id = $eleve->id;
+                           $bt[0]->periode_id = $periode->id;
+                           $bt[0]->save();
+                       } else {
 
-                        $bt = new Bulletin;
-                        $bt->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
-                        $bt->path = 'pdf/' . $pdf_name;
-                        $bt->appreciation = $request->input("appr_" . $eleve->id);
-                        $bt->date = date("Y-m-d H:i:s");
-                        $bt->eleve_id = $eleve->id;
-                        $bt->periode_id = $periode->id;
-                        $bt->save();
-                    }*/
+                           $bt = new Bulletin;
+                           $bt->nom = 'bulletin de ' . $eleve->nom . "-" . $eleve->prenom;
+                           $bt->path = 'pdf/' . $pdf_name;
+                           $bt->appreciation = $request->input("appr_" . $eleve->id);
+                           $bt->date = date("Y-m-d H:i:s");
+                           $bt->eleve_id = $eleve->id;
+                           $bt->periode_id = $periode->id;
+                           $bt->save();
+                       }*/
                 }
             }
         }
 
 
     }
+
+    private function caculate($eleve, $periode)
+    {
+        $notes = Note::where('eleve_id', $eleve->id)->where('periode_id', $periode->id)->get();
+        $totalc = 0;
+        $numberc = 0;
+        foreach ($notes as $note) {
+            $totalc += $note->note * $note->coefficient;
+            $numberc += $note->coefficient;
+
+        }
+        if ($numberc != 0) {
+            return ($totalc / $numberc);
+        }
+        return "XX";
+
+    }
+
     function randomstr($length)
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -162,7 +182,9 @@ class GestionCertificationController extends Controller
         }
         return $string;
     }
-    private function gethtml(){
+
+    private function gethtml($eleve, $promotion)
+    {
         $html = '<style type="text/css">
     table {
         border: 1px solid;
@@ -177,24 +199,15 @@ class GestionCertificationController extends Controller
 <div style="clear: both; float: left; width: 550px;">
 <h3 style="text-align: center;"><img src="http://bult/images/header.png" /></h3>
 </div>
-<h3 style="text-align: center;">RELEVE DE NOTES&nbsp; - Promotion 2019 - 2021 - ASI 19-21 A1</h3>
+<h5 style="text-align: center;">Formation:&nbsp; ' . $promotion->nom_complet . '</h5>
 <table style="width: 100%; height: 100%; border-color: white;">
 <tbody style="width: 100%; height: 100%; border-color: white;">
-<tr style="height: 83px; border-color: white;">
-<td style="width: 22.3001%; height: 83px; border-color: white;">
-<p>Formation :&nbsp;</p>
-</td>
-<td style="width: 74.6999%; text-align: center; height: 83px; border-color: white;">
-<p>Administrateur de Syst&egrave;mes d\'information</p>
-<p>TITRE RNCP de Niveau Il - N&deg; de certification 26E32601 - Code NSF 326 n</p>
-</td>
-</tr>
 <tr style="height: 53px;">
 <td style="width: 22.3001%; height: 53px; border-color: white;">
 <p>Nom de l\'apprentis :&nbsp; &nbsp;&nbsp;</p>
 </td>
 <td style="width: 74.6999%; height: 53px; border-color: white;">
-<p>BUFFARD hugo</p>
+<p>' . strtoupper($eleve->nom) . ' ' . strtolower($eleve->prenom) . '</p>
 </td>
 </tr>
 </tbody>
@@ -202,7 +215,7 @@ class GestionCertificationController extends Controller
 <table cellspacing="0">
 <tbody>
 <tr style="height: p24px;">
-<td style="height: 20px; background-color: #e5e7e9;" colspan="7">
+<td style="height: 20px; background-color: #e5e7e9; text-align: center" colspan="7">
 <p>Evaluation au sein du centre de formation</p>
 </td>
 </tr>
@@ -210,7 +223,7 @@ class GestionCertificationController extends Controller
 <td style="height: 62px;" rowspan="2">
 <p>Mati&egrave;re</p>
 </td>
-<td style="height: p24px;" colspan="5">
+<td style="height: p24px; text-align : center;" colspan="5">
 <p>Notes sur 20</p>
 </td>
 <td style="height: 62px;" rowspan="2">
@@ -234,38 +247,69 @@ class GestionCertificationController extends Controller
 <p>Classe</p>
 </td>
 </tr>
+';
+
+        foreach ($eleve->moyennes_certif as $moyenne) {
+
+            $html = $html . '
 <tr style="height: p24px;">
 <td style="height: p24px;">
-<p>Administration r&eacute;seau</p>
+<p>' . $moyenne->matiere->matiere . '</p>
 </td>
 <td style="height: p24px;">
-<p>1</p>
+<p>' . $moyenne->matiere->coefficient . '</p>
 </td>
-<td style="height: p24px;">
-<p>0</p>
-</td>
-<td style="height: p24px;">
+<td style="height: p24px; background-color: #e5e7e9">
 <p>&nbsp;</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . $moyenne->exam . '</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . $moyenne->note . '</p>
 </td>
 <td style="height: p24px;">
-<p>&nbsp;</p>
+<p>' . $moyenne->matiere->moyenne_classes[0]->note . '</p>
 </td>
-</tr>
-<tr style="height: p24px;">
+<td style="height: p24px;">
+<p>' . $moyenne->remarque . '</p>
+</td>
+</tr>';
+        }
+        $total = 0;
+        $number = 0;
+        $totalc = 0;
+        $numberc = 0;
+        $totale = 0;
+        $numbere = 0;
+        $totalec = 0;
+        $numberec = 0;
+        foreach ($eleve->moyennes_certif as $moyenne) {
+            $total += $moyenne->note * $moyenne->matiere->coefficient;
+            $number += $moyenne->matiere->coefficient;
+            $totalc += $moyenne->matiere->moyenne_classes[0]->note * $moyenne->matiere->coefficient;
+            $numberc += $moyenne->matiere->coefficient;
+            if ($moyenne->matiere->id == 1 || $moyenne->matiere->id == 3) {
+                dump($moyenne->matiere->id);
+                $totale += $moyenne->note * $moyenne->matiere->coefficient;
+                $numbere += $moyenne->matiere->coefficient;
+                $totalec += $moyenne->matiere->moyenne_classes[0]->note * $moyenne->matiere->coefficient;
+                $numberec += $moyenne->matiere->coefficient;
+            }
+        }
+        $moy_eleve = $total / $number;
+        $moy_class = $totalc / $numberc;
+        $moy_elevePro = $totale / $numbere;
+        $moy_classPro = $totalec / $numberec;
+        $html = $html . '<tr style="height: p24px;">
 <td style="height: p24px;" colspan="4">
 <p>Moyenne</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . substr($moy_eleve, 0, 4) . '</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . substr($moy_class, 0, 4) . '</p>
 </td>
 <td style="height: p24px;">
 <p>&nbsp;</p>
@@ -284,10 +328,10 @@ class GestionCertificationController extends Controller
 <p>Projet entreprise</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . substr($moy_elevePro, 0, 4) . '</p>
 </td>
 <td style="height: p24px;">
-<p>0</p>
+<p>' . substr($moy_classPro, 0, 4) . '</p>
 </td>
 <td style="height: p24px;">
 <p>&nbsp;</p>
@@ -297,33 +341,53 @@ class GestionCertificationController extends Controller
 <td style="height: 10px;" colspan="7">&nbsp;</td>
 </tr>
 <tr style="height: p24px;">
-<td style="height: 20px; background-color: #e5e7e9;" colspan="7">
+<td style="height: 20px; background-color: #e5e7e9; text-align : center; " colspan="7">
 <p>Appr&eacute;ciation du conseil de promotion et du responsable de dispositif</p>
 </td>
 </tr>
-<tr style="height: p24px;">
+';
+        $total_moy = 0;
+        $numbert = 0;
+        foreach ($promotion->periodes as $periode) {
+
+           $note =  $this->caculate($eleve, $periode);
+            $html = $html . '<tr style="height: p24px;">
 <td style="height: p24px; border-color: white;" colspan="1">
-<p>Moyenne ASI 19-21 A1</p>
+<p>Moyenne ' . $periode->nom . '</p>
 </td>
-<td style="height: p24px; border-color: white;" colspan="6">
-<p>XX/20</p>
+<td style="height: p24px; border-color: black; text-align : center;" colspan="6">
+<p>' . $note. '/20</p>
 </td>
-</tr>
-<tr>
+</tr>';
+
+
+            if(is_numeric($note)){
+                $total_moy = $total_moy + intval ( $note ,  10 ) ;
+                $numbert++;
+            }
+        }
+        $numbert = $numbert + 2;
+        $total_moy = $total_moy + ($moy_eleve * 2);
+        $moyenne_total = $total_moy/$numbert;
+
+
+
+
+        $html = $html . '<tr>
 <td style="height: p24px; border-color: white;" colspan="7">&nbsp;</td>
 </tr>
 <tr style="height: p24px; border-color: white;">
 <td style="height: p24px; border-color: white;">
-<p>Moyenne Certificaation</p>
+<p>Moyenne Certification</p>
 </td>
   <td style="height: p24px; border-color: black;">
-<p>12</p>
+<p>' . substr($moy_eleve, 0, 4) . '</p>
 </td>
 <td style="height: p24px; border-color: white;" colspan="3">
-<p>A dole le</p>
+<p>A Dole le</p>
 </td>
 <td style="height: p24px; border-color: white;">
-<p>03.10.21</p>
+<p>'.date("d/m/Y").'</p>
 </td>
 <td style="height: p24px; border-color: white;">
 <p>&nbsp;</p>
@@ -334,7 +398,7 @@ class GestionCertificationController extends Controller
 <p>Total</p>
 </td>
   <td style="height: p24px; border-color: black;">
-<p>12</p>
+<p>'.$moyenne_total.'</p>
 </td>
 <td style="height: p24px; border-color: white;" colspan="3">
 <p>Le responsable de dispositif :</p>
@@ -348,7 +412,6 @@ class GestionCertificationController extends Controller
 </tr>
 </tbody>
 </table>
-<p>"""</p>
 ';
         return $html;
     }
