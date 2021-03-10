@@ -10,7 +10,11 @@ class NotesCertification extends Model
     {
         return $this->belongsTo(Eleve::class);
     }
-    
+    public function matiere_certif()
+    {
+        return $this->belongsTo(MatieresCertification::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

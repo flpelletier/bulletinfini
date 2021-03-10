@@ -7,10 +7,18 @@ use App\Promotion;
 
 class GestionCertificationController extends Controller
 {
-    function index(){
+    function index()
+    {
 
         return view("management.certification.index")->with("promotions", Promotion::all());
     }
-    function bulletin(Request $request){
+
+    function bulletin(Request $request)
+    {
         return view("management.certification.certification")->with("promotion", Promotion::find($request->selector));
-    }}
+    }
+    function add_bulletin(Request $request)
+    {
+
+    }
+}

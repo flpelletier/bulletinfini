@@ -52,9 +52,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/management/note/add/{id}", "GestionNoteController@add_note")->name("note.add");
     Route::get("/management/note/edit/{id}", "GestionNoteController@edit_note")->name("note.edit");
     Route::get("/management/note/show/{id}", "GestionNoteController@show_note")->name("note_matiere.show");
+
+    Route::post("/management/certif-note/add/{id}", "GestionNoteController@add_certif_note")->name("certif-note.add");
+    Route::get("/management/certif-note/edit/{id}", "GestionNoteController@edit_certif_note")->name("certif-note.edit");
+    Route::get("/management/certif-note/show/{id}", "GestionNoteController@show_certif_note")->name("certif-note_matiere.show");
+
+
     Route::post("/management/note/update", "GestionNoteController@update")->name("note.update");
     Route::post("/management/note/destroy", "GestionNoteController@destroy")->name("note.destroy");
     Route::post("/management/note/create", "GestionNoteController@create")->name("note.create");
+
+
+    Route::post("/management/certif-note/update", "GestionNoteController@certif_update")->name("certif-note.update");
+    Route::post("/management/certif-note/destroy", "GestionNoteController@certif_destroy")->name("certif-note.destroy");
+    Route::post("/management/certif-note/create", "GestionNoteController@certif_create")->name("certif-note.create");
+
+
     Route::get("/managementb", "GestionBulletinController@index")->name("bulletin.index");
     Route::post("/management/bulletin", "GestionBulletinController@bulletin")->name("bulletin.manage");
     Route::get("/management/bulletin/add/{id}", "GestionBulletinController@add_bulletin")->name("bulletin.add");

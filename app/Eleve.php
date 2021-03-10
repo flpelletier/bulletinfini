@@ -14,6 +14,11 @@ class Eleve extends Model
     {
         return $this->hasMany(Note::class);
     }
+    public function certif_notes()
+    {
+        return $this->hasMany(NotesCertification::class);
+    }
+
     public function moyennes()
     {
         return $this->hasMany(Moyenne::class);
@@ -22,9 +27,6 @@ class Eleve extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
-    public function certification()
-    {
-        return $this->belongsTo(NotesCertification::class);
-    }
+
 
 }

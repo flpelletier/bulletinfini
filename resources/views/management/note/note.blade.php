@@ -149,6 +149,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+
                                             @foreach($certif_matiere as $matiere)
                                                 <tr class="odd">
                                                     <td class="dtr-control sorting_1"
@@ -156,8 +157,8 @@
                                                     @foreach($promotion->eleves as $eleve)
                                                         <td class="dtr-control sorting_1"
                                                             tabindex="0">
-                                                            @foreach($eleve->notes as $note)
-                                                                @if($note->matiere == $matiere)
+                                                            @foreach($eleve->certif_notes as $note)
+                                                                @if($note->matiere_id == $matiere->id)
                                                                     {{$note->note}}
                                                                 @endif
                                                             @endforeach
@@ -167,23 +168,26 @@
                                                         tabindex="0">
                                                         <center>
                                                             <div style="display: inline-flex;">
-
-                                                                <a rel="tooltip" class="btn btn-linght"
-                                                                   href="{{route('note.add', $matiere->id)}}"
-                                                                   data-original-title="" title="">
+                                                                <form method="post"
+                                                                      action="{{route('certif-note.add', $matiere->id)}}">
+                                                                    @csrf
+                                                                    <input type="hidden" value="{{$promotion->id}}" name="promo"/>
+                                                                    <button type="submit" class="btn btn-linght"
+                                                                            data-original-title="" title="">
                                                                     <span style="color:#4ae04a"><i
                                                                             class="fas fa-plus-square"></i></span>
-                                                                    <div class="ripple-container"></div>
-                                                                </a>
+                                                                        <div class="ripple-container"></div>
+                                                                    </button>
+                                                                </form>
                                                                 <a rel="tooltip" class="btn btn-linght"
-                                                                   href="{{route('note.edit', $matiere->id)}}"
+                                                                   href="{{route('certif-note.edit', $matiere->id)}}"
                                                                    data-original-title="" title="">
                                                                    <span style="color: red"><i
                                                                            class="fas fa-edit"></i></span>
                                                                     <div class="ripple-container"></div>
                                                                 </a>
                                                                 <a rel="tooltip" class="btn btn-linght"
-                                                                   href="{{route('note_matiere.show', $matiere->id)}}"
+                                                                   href="{{route('certif-note_matiere.show', $matiere->id)}}"
                                                                    data-original-title="" title="">
                                                                     <i class="fas fa-eye"></i>
                                                                     <div class="ripple-container"></div>

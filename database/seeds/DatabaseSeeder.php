@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PeriodesSeeder::class);
         $this->call(BulletinsSeeder::class);
         $this->call(NotesSeeder::class);
-        $this->call(NotesCertificationSeeder::class);
-
+        $this->call(MatieresCertificationSeeder::class);
     }
 }
