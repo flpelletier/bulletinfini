@@ -88,7 +88,7 @@ class NotesCertificationController extends Controller
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
-        DB::table("notes_certifications")->whereIn('id', explode(",", $ids))->delete();
+        DB::table("matiere_certifications")->whereIn('id', explode(",", $ids))->delete();
         return response()->json(['success' => "Matière(s) supprimé(s) avec succès."]);
     }
 }

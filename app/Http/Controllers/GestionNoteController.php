@@ -49,7 +49,8 @@ class GestionNoteController extends Controller
                 $note->save();
             }
         }
-        return $this->index();
+        return redirect()->route("note.index")->withStatus(__('Note créé !'));
+
     }
 
     function edit_note($id)
@@ -72,7 +73,8 @@ class GestionNoteController extends Controller
         $note = Note::Find($request->id_note);
         $note->note = $request->input("note");
         $note->update();
-        return $this->index();
+        return redirect()->route("note.index")->withStatus(__('Note mise à jour !'));
+
     }
 
     function destroy(Request $request)

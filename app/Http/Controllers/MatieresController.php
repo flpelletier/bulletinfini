@@ -41,7 +41,7 @@ class MatieresController extends Controller
             $newMatiere->save();
         }
 
-        return redirect()->route("promo.index")->with('success', 'Matière créée !');
+        return redirect()->route("promo.index")->with('success', 'Toutes les matières ont été liées à la promotion !');
     }
     public function edit($id)
     {
