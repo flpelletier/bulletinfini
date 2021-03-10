@@ -20,7 +20,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Matière') }}</label>
                             <div class="col-sm-7">
                                 <div class="form-group">
-                                    <div class="form-control" name="matiere" id="matiere" type="texte" style="background-color : #ececec;"> {{ $note->matiere->matiere}}</div>
+                                    <div class="form-control" name="matiere" id="matiere" type="texte" style="background-color : #ececec;"> {{ $note->matiere_certif->matiere}}</div>
 
                                 </div>
                             </div>
