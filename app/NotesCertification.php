@@ -12,7 +12,7 @@ class NotesCertification extends Model
     }
     public function matiere_certif()
     {
-        return $this->belongsTo(MatieresCertification::class);
+        return $this->belongsTo(MatieresCertification::class , "matiere_id");
     }
 
     /**

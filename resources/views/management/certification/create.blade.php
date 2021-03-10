@@ -3,17 +3,16 @@
 @section('content')
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Génération bulletin des {{strtoupper($periode->promotion->intitule)}}
-                periode {{$periode->nom}}</h3>
+            <h3 class="card-title">Génération de la certification des {{strtoupper($promotion->intitule)}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="{{route("bulletin.create")}}">
+        <form method="post" action="{{route("certification.create")}}">
             @csrf
             <div class="card-body">
                 <div class="form-group">
                     @php($counter = 0)
-                    @foreach($periode->promotion->eleves as $eleve)
+                    @foreach($promotion->eleves as $eleve)
                         @php($counter++)
 
                         <div class="row">
@@ -21,10 +20,8 @@
                                 <div class="input-group-prepend">
                                     <?php
                                     $testc = 0;
-                                    foreach ($eleve->notes as $note) {
-                                        if ($note->periode->id == $periode->id) {
-                                            $testc++;
-                                        }
+                                    foreach ($eleve->certif_notes as $note) {
+                                        $testc++;
                                     }
                                     ?>
                                     <span class="input-group-text">
@@ -42,15 +39,15 @@
                             <div id="remarque_{{$counter}}" style="display: none">
                                 <div class="container">
                                     <div class="row">
-                                        @foreach($periode->promotion->matieres as $matiere)
+                                        @foreach($matieres as $matiere)
                                             @php($counterc = 0 )
-                                            @foreach($eleve->notes as $note)
-                                                @if($note->matiere->id == $matiere->id)
+                                            @foreach($eleve->certif_notes as $note)
+                                                @if($note->matiere_id == $matiere->id)
                                                     @if($counterc == 0)
                                                         <div class="col-sm">
                                                             <div class="form-group">
                                                                 <div>
-                                                                    <label>{{$matiere->intitule}}</label>
+                                                                    <label>{{$matiere->matiere}}</label>
                                                                     <input name="r_{{$eleve->id}}_{{$matiere->id}}"
                                                                            type="text" class="form-control"
                                                                            maxlength="50" placeholder="Remarque">
@@ -62,17 +59,17 @@
                                                 @endif
                                             @endforeach
                                         @endforeach
-                                            <div class="w-100"></div>
-                                            <div class="col-sm">
-                                                <div class="form-group">
-                                                    <div>
-                                                        <label>Appréciation</label>
-                                                        <input name="appr_{{$eleve->id}}"
-                                                               type="text" class="form-control"
-                                                               maxlength="150" placeholder="Remarque">
-                                                    </div>
+                                        <div class="w-100"></div>
+                                        <div class="col-sm">
+                                            <div class="form-group">
+                                                <div>
+                                                    <label>Appréciation</label>
+                                                    <input name="appr_{{$eleve->id}}"
+                                                           type="text" class="form-control"
+                                                           maxlength="150" placeholder="Remarque">
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +81,7 @@
             <!-- /.card-body -->
             <div class="card-footer  text-center">
                 <a class="btn btn-info text-white" id="btn_selectall" onclick="selectall()">Séléctionner tous</a>
-                <button type="submit" name="periode" value="{{$periode->id}}" class="btn btn-success">Submit
+                <button type="submit" name="promotion" value="{{$promotion->id}}" class="btn btn-success">Submit
                 </button>
                 <a class="btn btn-info text-white" id="btn_unselectall" onclick="unselectall()">Décocher tous</a>
             </div>
