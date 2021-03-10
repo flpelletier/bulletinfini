@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/notes', 'NotesController');
     Route::delete('notes-deleteselection', 'NotesController@deleteAll');
     Route::resource('/matieres', 'MatieresController');
+    Route::resource('/notes-certification', 'NotesCertificationData');
+
     Route::get('/management/addmultiple/', 'MatieresController@add_multiple')->name("matieres.addmultiple");
     Route::post('/management/storemultiple', 'MatieresController@store_multiple')->name("matieres.storemultiple");
 
@@ -59,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("/management/bulletin", "GestionBulletinController@bulletin")->name("bulletin.manage");
     Route::get("/management/bulletin/add/{id}", "GestionBulletinController@add_bulletin")->name("bulletin.add");
     Route::post("/management/bulletin/create", "GestionBulletinController@create")->name("bulletin.create");
+    Route::delete("/management/bulletin/destroy/{id}", "GestionBulletinController@destroy")->name("bulletin.destroy");
 
     Route::get("/managementc", "GestionCertificationController@index")->name("certification.index");
     Route::post("/management/certification", "GestionCertificationController@bulletin")->name("certification.manage");

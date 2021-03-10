@@ -33,6 +33,14 @@ class GestionBulletinController extends Controller
     {
         return view("management.bulletin.create")->with("periode", Periode::find($id));
     }
+    public function destroy($id)
+    {
+        $bulletin = Bulletin::find($id);
+
+        $bulletin->delete();
+
+        return redirect()->route("bulletin.index")->with('error', 'Bulletin supprimé avec succès !');
+    }
 
     function create(Request $request)
     {
@@ -161,7 +169,8 @@ class GestionBulletinController extends Controller
             }
         }
 
-        return Redirect::back();
+       // return Redirect::back();
+       return redirect()->route("bulletin.index")->withStatus(__('Bulletins créés !'));
     }
 
     function randomstr($length)
