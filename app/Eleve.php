@@ -27,6 +27,11 @@ class Eleve extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+    public function moyennes_certif()
+    {
+        return $this->hasMany(MoyenneCertification::class);
+    }
+
 
 
 }

@@ -10,4 +10,13 @@ class MatieresCertification extends Model
     {
         return $this->hasMany(NotesCertification::class , "matiere_id");
     }
+    public function moyennes()
+    {
+        return $this->hasMany(MoyenneCertification::class);
+    }
+    public function moyenne_classes()
+    {
+        return $this->hasMany(MoyenneClasseCertification::class);
+    }
+
 }

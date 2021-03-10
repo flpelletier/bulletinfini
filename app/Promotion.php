@@ -22,4 +22,9 @@ class Promotion extends Model
     {
         return $this->hasMany(Matiere::class);
     }
+
+    public function moyenne_classes()
+    {
+        return $this->hasMany(MoyenneClasseCertification::class);
+    }
 }
